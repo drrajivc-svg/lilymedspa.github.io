@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact & Book | Lily Med Spa — Fullerton, CA</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A84C; --gold-light: #E8D5A0; --gold-dark: #9A7A30;
+  --black: #080808; --black-soft: #1A1A1A; --black-card: #141414;
+  --cream: #F5F0E8; --white: #FAFAF8;
+  --text-muted: rgba(250,250,248,0.45); --text-dim: rgba(250,250,248,0.7);
+  --border-gold: rgba(201,168,76,0.25); --border-gold-bright: rgba(201,168,76,0.5);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; } html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Jost', sans-serif; font-weight: 300; overflow-x: hidden; }
+body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 80px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(8,8,8,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-gold); }
+.nav-logo { display: flex; align-items: center; text-decoration: none; }
+.nav-logo img { height: 44px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-links a { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.3s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+.nav-links a:hover { color: var(--gold); } .nav-links a:hover::after { width: 100%; }
+.nav-dropdown { position: relative; }
+.nav-dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 16px; background: rgba(14,14,14,0.98); border: 1px solid var(--border-gold); border-radius: 4px; padding: 12px 0; min-width: 200px; opacity: 0; visibility: hidden; transition: all 0.3s; backdrop-filter: blur(20px); }
+.nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; margin-top: 8px; }
+.nav-dropdown-menu a { display: block; padding: 10px 24px; font-size: 10px; letter-spacing: 2px; color: var(--text-dim); transition: all 0.2s; }
+.nav-dropdown-menu a:hover { color: var(--gold); background: rgba(201,168,76,0.06); padding-left: 30px; }
+.nav-dropdown-menu a::after { display: none; }
+.nav-book-btn { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--black) !important; background: var(--gold); padding: 12px 24px; border-radius: 2px; text-decoration: none; transition: all 0.3s; }
+.nav-book-btn:hover { background: var(--gold-light); } .nav-book-btn::after { display: none !important; }
+
+/* PAGE HERO */
+.page-hero { padding: 160px 60px 80px; position: relative; overflow: hidden; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 65%); }
+.page-hero-inner { max-width: 700px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+.page-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: block; }
+.page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 6vw, 80px); font-weight: 300; line-height: 1.05; color: var(--white); margin-bottom: 24px; }
+.page-title em { color: var(--gold); font-style: italic; }
+.page-subtitle { font-size: 15px; font-weight: 300; color: var(--text-dim); line-height: 1.8; max-width: 500px; margin: 0 auto; }
+.page-hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 32px auto; opacity: 0.5; }
+
+/* CONTACT LAYOUT */
+.contact-section {
+  padding: 80px 60px 120px;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* INFO SIDE */
+.contact-info {}
+
+.info-block { margin-bottom: 48px; }
+.info-label { font-size: 10px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.info-label::after { content: ''; flex: 1; height: 1px; background: var(--border-gold); }
+
+.info-item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 16px; }
+.info-icon { width: 40px; height: 40px; border: 1px solid var(--border-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; background: rgba(201,168,76,0.04); transition: all 0.3s; }
+.info-item:hover .info-icon { border-color: var(--gold); background: rgba(201,168,76,0.08); }
+.info-text-title { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.info-text-value { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.5; }
+.info-text-value a { color: var(--white); text-decoration: none; transition: color 0.3s; }
+.info-text-value a:hover { color: var(--gold); }
+
+/* HOURS */
+.hours-grid { display: flex; flex-direction: column; gap: 8px; }
+.hours-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border-gold); font-size: 13px; font-weight: 300; }
+.hours-row:last-child { border-bottom: none; }
+.hours-day { color: var(--text-muted); }
+.hours-time { color: var(--white); }
+
+/* SERVICES QUICK LIST */
+.services-quick { display: flex; flex-wrap: wrap; gap: 8px; }
+.service-pill { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--border-gold); padding: 7px 14px; border-radius: 20px; transition: all 0.3s; text-decoration: none; }
+.service-pill:hover { background: rgba(201,168,76,0.08); border-color: var(--gold); }
+
+/* FORM SIDE */
+.contact-form-wrap {
+  background: var(--black-card);
+  border: 1px solid var(--border-gold);
+  padding: 56px 52px;
+  position: relative;
+}
+.contact-form-wrap::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 40px;
+  width: 80px; height: 3px;
+  background: var(--gold);
+}
+
+.form-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--white); margin-bottom: 8px; }
+.form-subtitle { font-size: 13px; font-weight: 300; color: var(--text-muted); margin-bottom: 40px; line-height: 1.6; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-group { margin-bottom: 24px; }
+.form-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 10px; }
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-gold);
+  border-radius: 2px;
+  padding: 14px 18px;
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--white);
+  transition: all 0.3s;
+  outline: none;
+  appearance: none;
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.04);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.08);
+}
+.form-select { cursor: pointer; }
+.form-select option { background: var(--black-card); color: var(--white); }
+.form-textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+
+.form-submit {
+  width: 100%;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  border: none;
+  padding: 18px 40px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 8px;
+}
+.form-submit:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
+
+.form-privacy { font-size: 11px; font-weight: 300; color: var(--text-muted); text-align: center; margin-top: 16px; line-height: 1.6; }
+
+/* SUCCESS MESSAGE */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 48px 32px;
+}
+.form-success-icon { font-size: 48px; margin-bottom: 20px; display: block; }
+.form-success-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--gold); margin-bottom: 12px; }
+.form-success-msg { font-size: 14px; font-weight: 300; color: var(--text-dim); line-height: 1.8; }
+
+/* MAP SECTION */
+.map-section { padding: 0 60px 100px; }
+.map-inner { max-width: 1300px; margin: 0 auto; }
+.map-label { font-size: 10px; font-weight: 700; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: block; }
+.map-frame {
+  border: 1px solid var(--border-gold);
+  overflow: hidden;
+  position: relative;
+}
+.map-frame iframe { width: 100%; height: 400px; border: none; display: block; filter: grayscale(30%) invert(5%); }
+
+/* FOOTER */
+footer { background: var(--black); border-top: 1px solid var(--border-gold); padding: 80px 60px 40px; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 60px; max-width: 1300px; margin: 0 auto 60px; }
+.footer-logo img { height: 48px; width: auto; margin-bottom: 20px; }
+.footer-tagline { font-size: 12px; font-weight: 300; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px; }
+.footer-contact-item { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; font-weight: 300; color: var(--text-dim); margin-bottom: 10px; line-height: 1.6; }
+.footer-contact-item span:first-child { color: var(--gold); flex-shrink: 0; }
+.footer-col-title { font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 12px; font-weight: 300; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+.footer-links a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid var(--border-gold); padding-top: 32px; display: flex; align-items: center; justify-content: space-between; max-width: 1300px; margin: 0 auto; }
+.footer-copy { font-size: 10px; font-weight: 300; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; }
+.footer-disclaimer { font-size: 10px; font-weight: 300; color: rgba(250,250,248,0.25); text-align: right; max-width: 400px; line-height: 1.6; }
+
+@media (max-width: 1024px) { .contact-section { grid-template-columns: 1fr; gap: 60px; } .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 768px) { nav { padding: 0 24px; } .nav-links { display: none; } .page-hero { padding: 120px 24px 60px; } .contact-section { padding: 60px 24px 80px; } .contact-form-wrap { padding: 36px 28px; } .form-row { grid-template-columns: 1fr; } .map-section { padding: 0 24px 60px; } .footer-grid { grid-template-columns: 1fr; gap: 40px; } .footer-bottom { flex-direction: column; gap: 16px; text-align: center; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="Logo-3.png" alt="Lily Med Spa"></a>
+  <ul class="nav-links">
+    <li class="nav-dropdown"><a href="#">Services ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="botox.html">Botox</a>
+        <a href="fillers.html">Dermal Fillers</a>
+        <a href="glp1.html">GLP-1 Weight Loss</a>
+        <a href="hair-restoration.html">Hair Restoration</a>
+        <a href="peptides.html">Peptide Therapy</a>
+        <a href="sexual-health.html">Sexual Health</a>
+      </div>
+    </li>
+    <li><a href="doctor.html">Our Doctor</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-book-btn">Book Consultation</a>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-eyebrow">Fullerton, California</span>
+    <h1 class="page-title">Let's Start Your<br><em>Journey</em></h1>
+    <div class="page-hero-divider"></div>
+    <p class="page-subtitle">Book a consultation with Dr. Choudhary today. We'll create a personalized plan tailored to your unique goals.</p>
+  </div>
+</section>
+
+<!-- CONTACT CONTENT -->
+<div class="contact-section">
+
+  <!-- INFO -->
+  <div class="contact-info">
+
+    <div class="info-block">
+      <div class="info-label">Contact Us</div>
+      <div class="info-item">
+        <div class="info-icon">📞</div>
+        <div>
+          <div class="info-text-title">Phone</div>
+          <div class="info-text-value"><a href="tel:6573566116">(657) 356-6116</a></div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">✉️</div>
+        <div>
+          <div class="info-text-title">Email</div>
+          <div class="info-text-value"><a href="mailto:lilymedicalcareinc@gmail.com">lilymedicalcareinc@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📍</div>
+        <div>
+          <div class="info-text-title">Location</div>
+          <div class="info-text-value">140 E Commonwealth Ave<br>Fullerton, CA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-block" id="location">
+      <div class="info-label">Hours</div>
+      <div class="hours-grid">
+        <div class="hours-row"><span class="hours-day">Monday – Friday</span><span class="hours-time">9:00 AM – 6:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">10:00 AM – 4:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">By Appointment</span></div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="info-label">Our Services</div>
+      <div class="services-quick">
+        <a href="botox.html" class="service-pill">Botox</a>
+        <a href="fillers.html" class="service-pill">Dermal Fillers</a>
+        <a href="glp1.html" class="service-pill">GLP-1 Weight Loss</a>
+        <a href="hair-restoration.html" class="service-pill">Hair Restoration</a>
+        <a href="peptides.html" class="service-pill">Peptide Therapy</a>
+        <a href="sexual-health.html" class="service-pill">Sexual Health</a>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="info-label">Meet the Doctor</div>
+      <div style="background:var(--black-card);border:1px solid var(--border-gold);padding:28px;transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border-gold)'">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--white);margin-bottom:4px;">Dr. Rajiv Choudhary</div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">MD, MPH · Founder & Medical Director</div>
+        <p style="font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.7;margin-bottom:20px;">Board Certified Internal Medicine · ASAHRS Hair Transplant Fellow · Masters in Public Health</p>
+        <a href="doctor.html" style="font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);text-decoration:none;">View Full Profile →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FORM -->
+  <div class="contact-form-wrap">
+    <h2 class="form-title">Book Your Consultation</h2>
+    <p class="form-subtitle">Fill out the form below and Dr. Choudhary's team will reach out within 24 hours to confirm your appointment.</p>
+
+    <!-- 
+      SETUP INSTRUCTIONS FOR FORMSPREE:
+      1. Go to https://formspree.io and create a free account
+      2. Create a new form and get your Form ID
+      3. Replace "YOUR_FORM_ID" below with your actual Formspree Form ID
+      4. Formspree will send all submissions to lilymedicalcareinc@gmail.com
+    -->
+    <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleSubmit(event)">
+
+      <!-- Hidden field to send to your email -->
+      <input type="hidden" name="_replyto" value="lilymedicalcareinc@gmail.com">
+      <input type="hidden" name="_subject" value="New Consultation Request — Lily Med Spa">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="firstName">First Name *</label>
+          <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Your first name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="lastName">Last Name *</label>
+          <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Your last name" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address *</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone" class="form-input" placeholder="(000) 000-0000" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="service">Service of Interest *</label>
+        <select id="service" name="service" class="form-select" required>
+          <option value="" disabled selected>Select a service...</option>
+          <option value="Botox">Botox</option>
+          <option value="Dermal Fillers">Dermal Fillers</option>
+          <option value="GLP-1 Weight Loss">GLP-1 Weight Loss (Semaglutide / Tirzepatide)</option>
+          <option value="Hair Restoration">Hair Restoration (FUE / FUT)</option>
+          <option value="Peptide Therapy">Peptide Therapy</option>
+          <option value="Sexual Health / TRT">Sexual Health / Hormone Therapy</option>
+          <option value="Multiple Services">Multiple Services</option>
+          <option value="Not Sure">Not Sure — Need a Consultation</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="preferred_date">Preferred Date</label>
+          <input type="date" id="preferred_date" name="preferred_date" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="preferred_time">Preferred Time</label>
+          <select id="preferred_time" name="preferred_time" class="form-select">
+            <option value="" disabled selected>Select a time...</option>
+            <option>Morning (9AM – 12PM)</option>
+            <option>Afternoon (12PM – 3PM)</option>
+            <option>Late Afternoon (3PM – 6PM)</option>
+            <option>Saturday (10AM – 4PM)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="message">Message / Questions</label>
+        <textarea id="message" name="message" class="form-textarea" placeholder="Tell us a bit about your goals or any questions you have..."></textarea>
+      </div>
+
+      <button type="submit" class="form-submit">Send Consultation Request ✦</button>
+      <p class="form-privacy">🔒 Your information is completely confidential and will never be shared. We typically respond within 24 hours.</p>
+    </form>
+
+    <!-- SUCCESS MESSAGE -->
+    <div class="form-success" id="formSuccess">
+      <span class="form-success-icon">✦</span>
+      <div class="form-success-title">Thank You!</div>
+      <p class="form-success-msg">Your consultation request has been received. Dr. Choudhary's team will contact you within 24 hours to confirm your appointment.<br><br>We look forward to meeting you at Lily Med Spa.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- MAP -->
+<div class="map-section">
+  <div class="map-inner">
+    <span class="map-label">Find Us</span>
+    <div class="map-frame">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.345!2d-117.9234!3d33.8704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s140+E+Commonwealth+Ave%2C+Fullerton%2C+CA!5e0!3m2!1sen!2sus!4v1"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-logo">
+      <img src="Logo-3.png" alt="Lily Med Spa">
+      <p class="footer-tagline">World-class aesthetic treatments by a board-certified physician in Fullerton, California.</p>
+      <div class="footer-contact-item"><span>📍</span><span>140 E Commonwealth Ave, Fullerton, CA</span></div>
+      <div class="footer-contact-item"><span>📞</span><span>(657) 356-6116</span></div>
+      <div class="footer-contact-item"><span>✉️</span><span>lilymedicalcareinc@gmail.com</span></div>
+    </div>
+    <div><p class="footer-col-title">Services</p><ul class="footer-links">
+      <li><a href="botox.html">Botox</a></li><li><a href="fillers.html">Dermal Fillers</a></li>
+      <li><a href="glp1.html">GLP-1 Weight Loss</a></li><li><a href="hair-restoration.html">Hair Restoration</a></li>
+      <li><a href="peptides.html">Peptide Therapy</a></li><li><a href="sexual-health.html">Sexual Health</a></li>
+    </ul></div>
+    <div><p class="footer-col-title">About</p><ul class="footer-links">
+      <li><a href="doctor.html">Our Doctor</a></li><li><a href="doctor.html#credentials">Credentials</a></li>
+    </ul></div>
+    <div><p class="footer-col-title">Visit Us</p><ul class="footer-links">
+      <li><a href="contact.html">Book Appointment</a></li><li><a href="contact.html">Contact Us</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Lily Medical Care, Inc. · Lily Med Spa · Fullerton, CA · Physician Owned & Operated</p>
+    <p class="footer-disclaimer">Results may vary. All treatments performed by or under direct physician supervision.</p>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+  const formData = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  }).then(response => {
+    if (response.ok) {
+      form.style.display = 'none';
+      success.style.display = 'block';
+    } else {
+      alert('There was an issue submitting your request. Please call us directly at (657) 356-6116.');
+    }
+  }).catch(() => {
+    alert('There was an issue submitting your request. Please call us directly at (657) 356-6116.');
+  });
+}
+</script>
+
+
+<!-- ══ TIDIO CHATBOT ══ -->
+<!-- To activate: 
+     1. Go to tidio.com and create a FREE account
+     2. Go to Settings → Developer → Your Public Key
+     3. Replace YOUR_TIDIO_KEY below with your actual key
+     4. Re-upload this file to GitHub — chatbot appears instantly! -->
+<script src="//code.tidio.co/YOUR_TIDIO_KEY.js" async></script>
+<!-- ══ END TIDIO ══ -->
+
+</body>
+</html>

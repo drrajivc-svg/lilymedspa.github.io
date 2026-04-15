@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peptide Therapy Programs | Lily Med Spa — Fullerton, CA</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A84C; --gold-light: #E8D5A0; --gold-dark: #9A7A30;
+  --black: #080808; --black-soft: #1A1A1A; --black-card: #141414;
+  --cream: #F5F0E8; --white: #FAFAF8;
+  --text-muted: rgba(250,250,248,0.42); --text-dim: rgba(250,250,248,0.68);
+  --border-gold: rgba(201,168,76,0.22); --border-gold-bright: rgba(201,168,76,0.5);
+  --anti-aging: #D4A574; --muscle: #7EB8D4; --brain: #9B8FD4;
+  --longevity: #74C4A4; --fat-loss: #D4847E;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; } html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Jost', sans-serif; font-weight: 300; overflow-x: hidden; }
+body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 80px; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; background: rgba(8,8,8,0.96); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-gold); }
+.nav-logo { display: flex; align-items: center; text-decoration: none; }
+.nav-logo img { height: 44px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-links a { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.3s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+.nav-links a:hover { color: var(--gold); } .nav-links a:hover::after { width: 100%; }
+.nav-dropdown { position: relative; }
+.nav-dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 16px; background: rgba(12,12,12,0.98); border: 1px solid var(--border-gold); border-radius: 4px; padding: 12px 0; min-width: 200px; opacity: 0; visibility: hidden; transition: all 0.3s; backdrop-filter: blur(20px); }
+.nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; margin-top: 8px; }
+.nav-dropdown-menu a { display: block; padding: 10px 24px; font-size: 10px; letter-spacing: 2px; color: var(--text-dim); transition: all 0.2s; }
+.nav-dropdown-menu a:hover { color: var(--gold); background: rgba(201,168,76,0.06); padding-left: 30px; }
+.nav-dropdown-menu a::after { display: none; }
+.nav-book-btn { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--black) !important; background: var(--gold); padding: 12px 24px; border-radius: 2px; text-decoration: none; transition: all 0.3s; }
+.nav-book-btn:hover { background: var(--gold-light); } .nav-book-btn::after { display: none !important; }
+
+/* HERO */
+.hero { min-height: 100vh; padding: 160px 60px 100px; position: relative; display: flex; align-items: center; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 55% 70% at 80% 40%, rgba(201,168,76,0.05) 0%, transparent 60%), radial-gradient(ellipse 40% 50% at 10% 70%, rgba(155,143,212,0.04) 0%, transparent 55%), linear-gradient(160deg, #080808 0%, #0D0D0D 60%, #080808 100%); }
+.hero-bg::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px); background-size: 80px 80px; }
+.hero-content { position: relative; z-index: 1; max-width: 760px; }
+.hero-eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+.hero-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
+.hero-eyebrow span { font-size: 10px; font-weight: 600; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); }
+.hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px, 7vw, 92px); font-weight: 300; line-height: 1.0; color: var(--white); margin-bottom: 28px; }
+.hero-title em { color: var(--gold); font-style: italic; }
+.hero-subtitle { font-size: 15px; font-weight: 300; color: var(--text-dim); line-height: 1.85; max-width: 540px; margin-bottom: 40px; }
+
+.program-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 44px; }
+.program-pill { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 8px 16px; border-radius: 2px; border: 1px solid; cursor: pointer; transition: all 0.3s; text-decoration: none; }
+.pill-aging   { color: var(--anti-aging); border-color: rgba(212,165,116,0.35); background: rgba(212,165,116,0.05); }
+.pill-muscle  { color: var(--muscle);     border-color: rgba(126,184,212,0.35); background: rgba(126,184,212,0.05); }
+.pill-brain   { color: var(--brain);      border-color: rgba(155,143,212,0.35); background: rgba(155,143,212,0.05); }
+.pill-longevity { color: var(--longevity); border-color: rgba(116,196,164,0.35); background: rgba(116,196,164,0.05); }
+.pill-fat     { color: var(--fat-loss);   border-color: rgba(212,132,126,0.35); background: rgba(212,132,126,0.05); }
+.pill-aging:hover   { background: rgba(212,165,116,0.12); border-color: var(--anti-aging); }
+.pill-muscle:hover  { background: rgba(126,184,212,0.12); border-color: var(--muscle); }
+.pill-brain:hover   { background: rgba(155,143,212,0.12); border-color: var(--brain); }
+.pill-longevity:hover { background: rgba(116,196,164,0.12); border-color: var(--longevity); }
+.pill-fat:hover     { background: rgba(212,132,126,0.12); border-color: var(--fat-loss); }
+
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--black); background: var(--gold); padding: 16px 36px; border-radius: 2px; text-decoration: none; transition: all 0.3s; display: inline-block; }
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
+.btn-outline { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); background: transparent; padding: 16px 36px; border: 1px solid var(--border-gold-bright); border-radius: 2px; text-decoration: none; transition: all 0.3s; display: inline-block; }
+.btn-outline:hover { background: rgba(201,168,76,0.07); transform: translateY(-2px); }
+
+.hero-stats { position: absolute; right: 60px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 3px; z-index: 1; }
+.hero-stat-card { background: rgba(20,20,20,0.8); border: 1px solid var(--border-gold); padding: 20px 28px; backdrop-filter: blur(10px); transition: all 0.3s; min-width: 180px; }
+.hero-stat-card:hover { border-color: var(--gold); transform: translateX(-4px); }
+.hero-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+.hero-stat-label { font-size: 9px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); }
+
+/* MARQUEE */
+.marquee-strip { background: var(--gold); padding: 12px 0; overflow: hidden; white-space: nowrap; }
+.marquee-inner { display: inline-block; animation: marquee 35s linear infinite; }
+.marquee-inner span { font-size: 9px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--black); padding: 0 32px; }
+.marquee-inner span::before { content: '✦'; margin-right: 32px; opacity: 0.5; }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* INTRO */
+.intro-section { padding: 100px 60px 60px; }
+.intro-inner { max-width: 1200px; margin: 0 auto; }
+.section-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 4vw, 58px); font-weight: 300; color: var(--white); line-height: 1.1; margin-bottom: 20px; }
+.section-title em { color: var(--gold); font-style: italic; }
+.section-sub { font-size: 14px; font-weight: 300; color: var(--text-dim); line-height: 1.8; max-width: 600px; }
+
+/* PROGRAMS */
+.programs-wrapper { padding: 0 60px 120px; }
+.programs-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 80px; }
+
+.program-block { position: relative; }
+.program-block::before { content: ''; position: absolute; left: -24px; top: 0; bottom: 0; width: 2px; border-radius: 2px; }
+.program-block.aging::before    { background: linear-gradient(180deg, var(--anti-aging), transparent); }
+.program-block.muscle::before   { background: linear-gradient(180deg, var(--muscle), transparent); }
+.program-block.brain::before    { background: linear-gradient(180deg, var(--brain), transparent); }
+.program-block.longevity::before { background: linear-gradient(180deg, var(--longevity), transparent); }
+.program-block.fat::before      { background: linear-gradient(180deg, var(--fat-loss), transparent); }
+
+.program-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 36px; gap: 40px; }
+.program-num { font-family: 'Cormorant Garamond', serif; font-size: 80px; font-weight: 300; line-height: 0.9; margin-bottom: 12px; opacity: 0.15; }
+.aging    .program-num { color: var(--anti-aging); }
+.muscle   .program-num { color: var(--muscle); }
+.brain    .program-num { color: var(--brain); }
+.longevity .program-num { color: var(--longevity); }
+.fat      .program-num { color: var(--fat-loss); }
+
+.program-category { font-size: 9px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; }
+.aging    .program-category { color: var(--anti-aging); }
+.muscle   .program-category { color: var(--muscle); }
+.brain    .program-category { color: var(--brain); }
+.longevity .program-category { color: var(--longevity); }
+.fat      .program-category { color: var(--fat-loss); }
+
+.program-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 3.5vw, 48px); font-weight: 300; color: var(--white); line-height: 1.1; margin-bottom: 12px; }
+.program-tagline { font-size: 13px; font-weight: 300; color: var(--text-muted); line-height: 1.7; max-width: 480px; }
+
+.program-badge { flex-shrink: 0; padding: 16px 24px; border: 1px solid; border-radius: 2px; text-align: center; min-width: 160px; }
+.aging    .program-badge { border-color: rgba(212,165,116,0.3); background: rgba(212,165,116,0.04); }
+.muscle   .program-badge { border-color: rgba(126,184,212,0.3); background: rgba(126,184,212,0.04); }
+.brain    .program-badge { border-color: rgba(155,143,212,0.3); background: rgba(155,143,212,0.04); }
+.longevity .program-badge { border-color: rgba(116,196,164,0.3); background: rgba(116,196,164,0.04); }
+.fat      .program-badge { border-color: rgba(212,132,126,0.3); background: rgba(212,132,126,0.04); }
+
+.program-badge-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+.program-badge-label { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
+.aging    .program-badge-label { color: var(--anti-aging); }
+.muscle   .program-badge-label { color: var(--muscle); }
+.brain    .program-badge-label { color: var(--brain); }
+.longevity .program-badge-label { color: var(--longevity); }
+.fat      .program-badge-label { color: var(--fat-loss); }
+
+.program-divider { height: 1px; background: linear-gradient(90deg, var(--border-gold), transparent); margin-bottom: 36px; }
+
+.peptides-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+
+.peptide-card { background: var(--black-card); border: 1px solid var(--border-gold); padding: 36px 32px; transition: all 0.35s; position: relative; overflow: hidden; }
+.peptide-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; transform: scaleX(0); transition: transform 0.35s; }
+.aging    .peptide-card::before { background: linear-gradient(90deg, transparent, var(--anti-aging), transparent); }
+.muscle   .peptide-card::before { background: linear-gradient(90deg, transparent, var(--muscle), transparent); }
+.brain    .peptide-card::before { background: linear-gradient(90deg, transparent, var(--brain), transparent); }
+.longevity .peptide-card::before { background: linear-gradient(90deg, transparent, var(--longevity), transparent); }
+.fat      .peptide-card::before { background: linear-gradient(90deg, transparent, var(--fat-loss), transparent); }
+.peptide-card:hover::before { transform: scaleX(1); }
+.peptide-card:hover { transform: translateY(-3px); }
+.aging    .peptide-card:hover { border-color: rgba(212,165,116,0.5); }
+.muscle   .peptide-card:hover { border-color: rgba(126,184,212,0.5); }
+.brain    .peptide-card:hover { border-color: rgba(155,143,212,0.5); }
+.longevity .peptide-card:hover { border-color: rgba(116,196,164,0.5); }
+.fat      .peptide-card:hover { border-color: rgba(212,132,126,0.5); }
+
+.peptide-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; gap: 12px; }
+.peptide-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: var(--white); line-height: 1.1; }
+.peptide-tag { font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+.aging    .peptide-tag { color: var(--anti-aging); background: rgba(212,165,116,0.1); border: 1px solid rgba(212,165,116,0.25); }
+.muscle   .peptide-tag { color: var(--muscle);     background: rgba(126,184,212,0.1); border: 1px solid rgba(126,184,212,0.25); }
+.brain    .peptide-tag { color: var(--brain);       background: rgba(155,143,212,0.1); border: 1px solid rgba(155,143,212,0.25); }
+.longevity .peptide-tag { color: var(--longevity);  background: rgba(116,196,164,0.1); border: 1px solid rgba(116,196,164,0.25); }
+.fat      .peptide-tag { color: var(--fat-loss);    background: rgba(212,132,126,0.1); border: 1px solid rgba(212,132,126,0.25); }
+
+.peptide-arrow { font-size: 13px; font-weight: 300; color: var(--text-dim); line-height: 1.7; margin-bottom: 20px; padding-left: 12px; border-left: 2px solid; }
+.aging    .peptide-arrow { border-left-color: rgba(212,165,116,0.3); }
+.muscle   .peptide-arrow { border-left-color: rgba(126,184,212,0.3); }
+.brain    .peptide-arrow { border-left-color: rgba(155,143,212,0.3); }
+.longevity .peptide-arrow { border-left-color: rgba(116,196,164,0.3); }
+.fat      .peptide-arrow { border-left-color: rgba(212,132,126,0.3); }
+
+.peptide-benefits { display: flex; flex-wrap: wrap; gap: 6px; }
+.benefit-chip { font-size: 9px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; }
+.aging    .benefit-chip { color: rgba(212,165,116,0.8); background: rgba(212,165,116,0.07); }
+.muscle   .benefit-chip { color: rgba(126,184,212,0.8); background: rgba(126,184,212,0.07); }
+.brain    .benefit-chip { color: rgba(155,143,212,0.8); background: rgba(155,143,212,0.07); }
+.longevity .benefit-chip { color: rgba(116,196,164,0.8); background: rgba(116,196,164,0.07); }
+.fat      .benefit-chip { color: rgba(212,132,126,0.8); background: rgba(212,132,126,0.07); }
+
+/* DISCLAIMER */
+.disclaimer-section { padding: 60px; background: var(--black-soft); border-top: 1px solid var(--border-gold); border-bottom: 1px solid var(--border-gold); }
+.disclaimer-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+.disclaimer-icon { font-size: 24px; margin-bottom: 16px; display: block; }
+.disclaimer-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; color: var(--gold); margin-bottom: 16px; }
+.disclaimer-text { font-size: 12px; font-weight: 300; color: var(--text-muted); line-height: 1.9; }
+
+/* WHY SECTION */
+.why-section { background: var(--cream); color: var(--black); padding: 100px 60px; }
+.why-inner { max-width: 1100px; margin: 0 auto; }
+.why-header { margin-bottom: 60px; }
+.why-label { font-size: 10px; font-weight: 700; letter-spacing: 6px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 16px; display: block; }
+.why-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 54px); font-weight: 300; color: var(--black); line-height: 1.1; }
+.why-title em { color: var(--gold-dark); font-style: italic; }
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.why-card { padding: 40px 32px; background: rgba(8,8,8,0.04); border: 1px solid rgba(8,8,8,0.08); transition: all 0.3s; }
+.why-card:hover { background: rgba(8,8,8,0.07); border-color: var(--gold-dark); transform: translateY(-3px); }
+.why-card-icon { font-size: 28px; margin-bottom: 18px; display: block; }
+.why-card-title { font-size: 15px; font-weight: 600; color: var(--black); margin-bottom: 10px; }
+.why-card-desc { font-size: 13px; font-weight: 300; color: rgba(8,8,8,0.6); line-height: 1.75; }
+
+/* CTA & FOOTER */
+.cta-strip { background: var(--gold); padding: 60px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.cta-text { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--black); line-height: 1.2; }
+.cta-sub { font-size: 13px; font-weight: 300; color: rgba(8,8,8,0.6); margin-top: 8px; }
+.btn-dark { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--white); background: var(--black); padding: 18px 40px; border-radius: 2px; text-decoration: none; transition: all 0.3s; white-space: nowrap; display: inline-block; }
+.btn-dark:hover { background: #1a1a1a; transform: translateY(-2px); }
+footer { background: var(--black); border-top: 1px solid var(--border-gold); padding: 80px 60px 40px; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 60px; max-width: 1300px; margin: 0 auto 60px; }
+.footer-logo img { height: 48px; width: auto; margin-bottom: 20px; }
+.footer-tagline { font-size: 12px; font-weight: 300; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px; }
+.footer-contact-item { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; font-weight: 300; color: var(--text-dim); margin-bottom: 10px; line-height: 1.6; }
+.footer-contact-item span:first-child { color: var(--gold); flex-shrink: 0; }
+.footer-col-title { font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 12px; font-weight: 300; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+.footer-links a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid var(--border-gold); padding-top: 32px; display: flex; align-items: center; justify-content: space-between; max-width: 1300px; margin: 0 auto; }
+.footer-copy { font-size: 10px; font-weight: 300; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; }
+.footer-disclaimer { font-size: 10px; font-weight: 300; color: rgba(250,250,248,0.22); text-align: right; max-width: 440px; line-height: 1.7; }
+
+@media (max-width: 1100px) { .hero-stats { display: none; } .peptides-grid { grid-template-columns: 1fr; } .why-grid { grid-template-columns: 1fr 1fr; } .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 768px) { nav { padding: 0 24px; } .nav-links { display: none; } .hero { padding: 120px 24px 70px; min-height: auto; } .intro-section { padding: 70px 24px 40px; } .programs-wrapper { padding: 0 24px 80px; } .program-header { flex-direction: column; gap: 20px; } .why-section { padding: 70px 24px; } .why-grid { grid-template-columns: 1fr; } .disclaimer-section { padding: 40px 24px; } .cta-strip { flex-direction: column; padding: 40px 24px; text-align: center; } footer { padding: 60px 24px 32px; } .footer-grid { grid-template-columns: 1fr; gap: 36px; } .footer-bottom { flex-direction: column; gap: 14px; text-align: center; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+.delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.25s; } .delay-3 { animation-delay: 0.4s; } .delay-4 { animation-delay: 0.55s; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="Logo-3.png" alt="Lily Med Spa"></a>
+  <ul class="nav-links">
+    <li class="nav-dropdown"><a href="#">Services ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="botox.html">Botox</a><a href="fillers.html">Dermal Fillers</a>
+        <a href="glp1.html">GLP-1 Weight Loss</a><a href="hair-restoration.html">Hair Restoration</a>
+        <a href="peptides.html">Peptide Therapy</a><a href="sexual-health.html">Sexual Health</a>
+      </div>
+    </li>
+    <li><a href="doctor.html">Our Doctor</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-book-btn">Book Consultation</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow fade-up delay-1">
+      <div class="hero-eyebrow-line"></div>
+      <span>Physician-Supervised · Fullerton, CA</span>
+    </div>
+    <h1 class="hero-title fade-up delay-2">The Science of<br><em>Peptide Therapy</em></h1>
+    <p class="hero-subtitle fade-up delay-3">Five targeted programs — Anti-Aging, Muscle & Recovery, Brain & Focus, Longevity and Fat Loss — each built around clinically validated peptides and supervised by Dr. Choudhary, MD, MPH.</p>
+    <div class="program-pills fade-up delay-3">
+      <a href="#anti-aging"  class="program-pill pill-aging">✦ Anti-Aging</a>
+      <a href="#muscle"      class="program-pill pill-muscle">✦ Muscle & Recovery</a>
+      <a href="#brain"       class="program-pill pill-brain">✦ Brain & Focus</a>
+      <a href="#longevity"   class="program-pill pill-longevity">✦ Longevity & Wellness</a>
+      <a href="#fat-loss"    class="program-pill pill-fat">✦ Fat Loss & Metabolism</a>
+    </div>
+    <div class="hero-btns fade-up delay-4">
+      <a href="contact.html" class="btn-primary">Book a Peptide Consultation</a>
+      <a href="#programs"    class="btn-outline">View All Programs</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat-card"><div class="hero-stat-num">5</div><div class="hero-stat-label">Targeted Programs</div></div>
+    <div class="hero-stat-card"><div class="hero-stat-num">16+</div><div class="hero-stat-label">Active Peptides</div></div>
+    <div class="hero-stat-card"><div class="hero-stat-num">MD</div><div class="hero-stat-label">Physician Supervised</div></div>
+    <div class="hero-stat-card"><div class="hero-stat-num">cGMP</div><div class="hero-stat-label">USA Manufactured</div></div>
+  </div>
+</section>
+
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>Anti-Aging</span><span>Muscle Growth</span><span>Brain & Focus</span><span>Longevity</span><span>Fat Loss</span><span>Physician Supervised</span><span>cGMP Formulations</span><span>USA Manufactured</span><span>Personalized Protocols</span>
+    <span>Anti-Aging</span><span>Muscle Growth</span><span>Brain & Focus</span><span>Longevity</span><span>Fat Loss</span><span>Physician Supervised</span><span>cGMP Formulations</span><span>USA Manufactured</span><span>Personalized Protocols</span>
+  </div>
+</div>
+
+<section class="intro-section" id="programs">
+  <div class="intro-inner">
+    <span class="section-eyebrow">Our Programs</span>
+    <h2 class="section-title">Five Targeted <em>Peptide Programs</em></h2>
+    <p class="section-sub">Each program is built around clinically validated peptides selected for their synergy and safety profile. Dr. Choudhary will evaluate your goals and customize the right protocol for you.</p>
+  </div>
+</section>
+
+<div class="programs-wrapper">
+  <div class="programs-inner">
+
+    <!-- 01 ANTI-AGING -->
+    <div class="program-block aging" id="anti-aging">
+      <div class="program-header">
+        <div>
+          <div class="program-num">01</div>
+          <div class="program-category">Program One</div>
+          <h2 class="program-name">Anti-Aging &<br>Skin Rejuvenation</h2>
+          <p class="program-tagline">Restore collagen, tighten skin, stimulate hair regrowth and slow cellular aging with peptides that work at the biological root of aging.</p>
+        </div>
+        <div class="program-badge"><span class="program-badge-icon">🌸</span><div class="program-badge-label">Anti-Aging</div></div>
+      </div>
+      <div class="program-divider"></div>
+      <div class="peptides-grid">
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">GHK-Cu</div><span class="peptide-tag">Copper Peptide</span></div>
+          <p class="peptide-arrow">Collagen synthesis, skin tightening, hair follicle regeneration and wound healing acceleration.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Collagen Boost</span><span class="benefit-chip">Skin Tightening</span><span class="benefit-chip">Hair Regrowth</span><span class="benefit-chip">Wound Healing</span></div>
+        </div>
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">CJC-1295 + Ipamorelin</div><span class="peptide-tag">GH Secretagogue</span></div>
+          <p class="peptide-arrow">Stimulates natural growth hormone release — improving skin elasticity, body composition, sleep quality and overall anti-aging effects.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Growth Hormone</span><span class="benefit-chip">Skin Elasticity</span><span class="benefit-chip">Sleep Quality</span><span class="benefit-chip">Body Composition</span></div>
+        </div>
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">Epitalon</div><span class="peptide-tag">Telomere Support</span></div>
+          <p class="peptide-arrow">Promotes telomerase activity — the enzyme responsible for maintaining telomere length — linked to longevity and slowed cellular aging.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Telomere Length</span><span class="benefit-chip">Longevity</span><span class="benefit-chip">Cellular Aging</span><span class="benefit-chip">Sleep Regulation</span></div>
+        </div>
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">Thymosin Beta-4</div><span class="peptide-tag">TB-500</span></div>
+          <p class="peptide-arrow">Accelerates tissue repair, promotes skin healing, reduces inflammation and supports hair follicle stem cell activation.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Tissue Repair</span><span class="benefit-chip">Skin Healing</span><span class="benefit-chip">Anti-Inflammatory</span><span class="benefit-chip">Hair Support</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 MUSCLE & RECOVERY -->
+    <div class="program-block muscle" id="muscle">
+      <div class="program-header">
+        <div>
+          <div class="program-num">02</div>
+          <div class="program-category">Program Two</div>
+          <h2 class="program-name">Muscle Growth<br>& Recovery</h2>
+          <p class="program-tagline">Accelerate muscle development, heal injuries faster and reduce recovery time with evidence-backed peptides trusted by athletes and high performers.</p>
+        </div>
+        <div class="program-badge"><span class="program-badge-icon">💪</span><div class="program-badge-label">Performance</div></div>
+      </div>
+      <div class="program-divider"></div>
+      <div class="peptides-grid">
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">CJC-1295 + Ipamorelin</div><span class="peptide-tag">GH Stack</span></div>
+          <p class="peptide-arrow">Increases growth hormone and IGF-1 levels → drives muscle protein synthesis, accelerates recovery and improves body composition.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Muscle Growth</span><span class="benefit-chip">GH Increase</span><span class="benefit-chip">Fat Reduction</span><span class="benefit-chip">Recovery</span></div>
+        </div>
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">BPC-157</div><span class="peptide-tag">Healing Peptide</span></div>
+          <p class="peptide-arrow">Body Protection Compound — accelerates healing of tendons, ligaments, muscles and gut lining. One of the most researched injury-recovery peptides available.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Tendon Healing</span><span class="benefit-chip">Ligament Repair</span><span class="benefit-chip">Gut Healing</span><span class="benefit-chip">Anti-Inflammatory</span></div>
+        </div>
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">TB-500</div><span class="peptide-tag">Thymosin Beta-4</span></div>
+          <p class="peptide-arrow">Promotes cellular repair and regeneration, reduces muscle inflammation and accelerates recovery from both acute injuries and chronic overuse.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Cellular Repair</span><span class="benefit-chip">Inflammation</span><span class="benefit-chip">Muscle Recovery</span><span class="benefit-chip">Flexibility</span></div>
+        </div>
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">IGF-1 LR3</div><span class="peptide-tag">Advanced Users</span></div>
+          <p class="peptide-arrow">Insulin-Like Growth Factor — directly stimulates muscle cell proliferation and differentiation. Reserved for advanced protocols under close physician supervision.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Direct Muscle Growth</span><span class="benefit-chip">Cell Proliferation</span><span class="benefit-chip">IGF-1 Axis</span><span class="benefit-chip">Advanced Protocol</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 BRAIN & FOCUS -->
+    <div class="program-block brain" id="brain">
+      <div class="program-header">
+        <div>
+          <div class="program-num">03</div>
+          <div class="program-category">Program Three</div>
+          <h2 class="program-name">Brain, Focus<br>& Energy</h2>
+          <p class="program-tagline">Sharpen cognitive performance, reduce anxiety, enhance memory and protect neurological function with nootropic peptides and brain-support stacks.</p>
+        </div>
+        <div class="program-badge"><span class="program-badge-icon">🧠</span><div class="program-badge-label">Cognitive</div></div>
+      </div>
+      <div class="program-divider"></div>
+      <div class="peptides-grid">
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">Semax</div><span class="peptide-tag">Nootropic</span></div>
+          <p class="peptide-arrow">Derived from ACTH — enhances focus, memory, learning speed and provides significant neuroprotection. Used clinically in Russia for stroke recovery.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Focus</span><span class="benefit-chip">Memory</span><span class="benefit-chip">Neuroprotection</span><span class="benefit-chip">BDNF Increase</span></div>
+        </div>
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">Selank</div><span class="peptide-tag">Anxiolytic</span></div>
+          <p class="peptide-arrow">Synthetic analog of tuftsin — reduces anxiety and stress without sedation, while simultaneously improving cognitive clarity and working memory.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Anti-Anxiety</span><span class="benefit-chip">Cognitive Clarity</span><span class="benefit-chip">Mood Balance</span><span class="benefit-chip">No Sedation</span></div>
+        </div>
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">Dihexa</div><span class="peptide-tag">Neurogenesis</span></div>
+          <p class="peptide-arrow">One of the most potent neurogenic compounds known — promotes synaptic growth and neuroplasticity. Used in niche cognitive enhancement protocols under physician guidance.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Neurogenesis</span><span class="benefit-chip">Synaptic Growth</span><span class="benefit-chip">Neuroplasticity</span><span class="benefit-chip">Niche Protocol</span></div>
+        </div>
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">Brain Ultra Stack</div><span class="peptide-tag">Combo Formula</span></div>
+          <p class="peptide-arrow">A physician-curated combination bundling NAD⁺, nootropic peptides and cognitive cofactors for comprehensive brain energy, clarity and protection.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">NAD⁺ Support</span><span class="benefit-chip">Energy</span><span class="benefit-chip">Mental Clarity</span><span class="benefit-chip">Comprehensive</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 LONGEVITY -->
+    <div class="program-block longevity" id="longevity">
+      <div class="program-header">
+        <div>
+          <div class="program-num">04</div>
+          <div class="program-category">Program Four</div>
+          <h2 class="program-name">Longevity, Wellness<br>& Biohacking</h2>
+          <p class="program-tagline">Invest in your cellular future. These compounds target the fundamental biology of aging — mitochondrial function, immune resilience and DNA repair pathways.</p>
+        </div>
+        <div class="program-badge"><span class="program-badge-icon">♾️</span><div class="program-badge-label">Longevity</div></div>
+      </div>
+      <div class="program-divider"></div>
+      <div class="peptides-grid">
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">Epitalon</div><span class="peptide-tag">Telomere Theory</span></div>
+          <p class="peptide-arrow">Activates telomerase to slow telomere shortening — one of the most studied theoretical mechanisms of biological aging. Also supports circadian rhythm and sleep.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Telomere Support</span><span class="benefit-chip">Anti-Aging</span><span class="benefit-chip">Circadian Rhythm</span><span class="benefit-chip">Longevity</span></div>
+        </div>
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">MOTS-c</div><span class="peptide-tag">Mitochondrial</span></div>
+          <p class="peptide-arrow">A mitochondria-derived peptide that regulates metabolic homeostasis, improves insulin sensitivity and promotes mitochondrial biogenesis — directly linked to healthspan.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Mitochondrial Health</span><span class="benefit-chip">Insulin Sensitivity</span><span class="benefit-chip">Metabolic Health</span><span class="benefit-chip">Healthspan</span></div>
+        </div>
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">Thymosin Alpha-1</div><span class="peptide-tag">Immune Modulator</span></div>
+          <p class="peptide-arrow">Clinically used worldwide for immune modulation — strengthens T-cell function, enhances innate immunity and supports immune resilience in aging populations.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Immune Modulation</span><span class="benefit-chip">T-Cell Support</span><span class="benefit-chip">Anti-Viral Defense</span><span class="benefit-chip">Autoimmune Balance</span></div>
+        </div>
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">NAD⁺</div><span class="peptide-tag">Cellular Energy</span></div>
+          <p class="peptide-arrow">Not a peptide, but always bundled — NAD⁺ is essential for cellular energy metabolism, DNA repair and sirtuin activation. Levels decline significantly with age.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Cellular Energy</span><span class="benefit-chip">DNA Repair</span><span class="benefit-chip">Sirtuin Activation</span><span class="benefit-chip">Anti-Aging Core</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 FAT LOSS -->
+    <div class="program-block fat" id="fat-loss">
+      <div class="program-header">
+        <div>
+          <div class="program-num">05</div>
+          <div class="program-category">Program Five</div>
+          <h2 class="program-name">Fat Loss &<br>Metabolism</h2>
+          <p class="program-tagline">Targeted peptides that activate lipolysis, improve mitochondrial efficiency and stimulate growth hormone — creating a metabolic environment optimized for fat loss.</p>
+        </div>
+        <div class="program-badge"><span class="program-badge-icon">⚡</span><div class="program-badge-label">Metabolic</div></div>
+      </div>
+      <div class="program-divider"></div>
+      <div class="peptides-grid">
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">AOD-9604</div><span class="peptide-tag">Direct Lipolysis</span></div>
+          <p class="peptide-arrow">A fragment of human growth hormone specifically designed for fat metabolism — directly stimulates lipolysis with minimal effect on blood sugar or IGF-1 levels.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Direct Fat Burning</span><span class="benefit-chip">Lipolysis</span><span class="benefit-chip">No Glucose Effect</span><span class="benefit-chip">HGH Fragment</span></div>
+        </div>
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">MOTS-c</div><span class="peptide-tag">Mitochondrial</span></div>
+          <p class="peptide-arrow">Improves mitochondrial efficiency and insulin sensitivity — creating a metabolic environment that favors fat oxidation over storage, especially during exercise.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Insulin Sensitivity</span><span class="benefit-chip">Mitochondria</span><span class="benefit-chip">Fat Oxidation</span><span class="benefit-chip">Exercise Performance</span></div>
+        </div>
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">CJC-1295 + Ipamorelin</div><span class="peptide-tag">GH-Driven Fat Loss</span></div>
+          <p class="peptide-arrow">Growth hormone is a powerful lipolytic agent — this stack increases endogenous GH pulsatility which promotes visceral and subcutaneous fat mobilization.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">GH Stimulation</span><span class="benefit-chip">Visceral Fat</span><span class="benefit-chip">Body Recomp</span><span class="benefit-chip">Indirect Fat Loss</span></div>
+        </div>
+        <div class="peptide-card">
+          <div class="peptide-header"><div class="peptide-name">Tesamorelin</div><span class="peptide-tag">Visceral Fat</span></div>
+          <p class="peptide-arrow">An FDA-approved GHRH analog with the strongest evidence for visceral fat reduction — particularly effective for abdominal fat in metabolically compromised patients.</p>
+          <div class="peptide-benefits"><span class="benefit-chip">Visceral Fat Reduction</span><span class="benefit-chip">GHRH Analog</span><span class="benefit-chip">FDA Approved</span><span class="benefit-chip">Abdominal Fat</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="disclaimer-section">
+  <div class="disclaimer-inner">
+    <span class="disclaimer-icon">⚕️</span>
+    <div class="disclaimer-title">Physician-Supervised Protocols Only</div>
+    <p class="disclaimer-text">All peptide programs at Lily Med Spa are designed and supervised by Dr. Rajiv Choudhary, MD, MPH. Every protocol is individualized following a comprehensive consultation and clinical evaluation. All compounds are USA-manufactured to cGMP/FDA research-use standards and administered under full medical supervision. Peptide therapy is not a substitute for conventional medical care. Individual results may vary. Available exclusively at Lily Med Spa, 140 E Commonwealth Ave, Fullerton, CA.</p>
+  </div>
+</div>
+
+<section class="why-section">
+  <div class="why-inner">
+    <div class="why-header">
+      <span class="why-label">Why Choose Lily</span>
+      <h2 class="why-title">Why Choose Us for<br><em>Peptide Therapy</em>?</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><span class="why-card-icon">🏥</span><div class="why-card-title">Physician Designed & Supervised</div><p class="why-card-desc">Every protocol is personally designed by Dr. Choudhary, a board-certified MD. Not a nurse, not a PA — your physician is directly involved in your care.</p></div>
+      <div class="why-card"><span class="why-card-icon">🔬</span><div class="why-card-title">cGMP USA-Manufactured Compounds</div><p class="why-card-desc">We only source peptides from US-based compounding pharmacies that meet current Good Manufacturing Practice standards — never overseas or unverified suppliers.</p></div>
+      <div class="why-card"><span class="why-card-icon">🎯</span><div class="why-card-title">Fully Personalized Protocols</div><p class="why-card-desc">No cookie-cutter programs. Your peptide stack is built around your specific goals, lab results and health history — adjusted over time as your body responds.</p></div>
+      <div class="why-card"><span class="why-card-icon">📊</span><div class="why-card-title">Lab-Guided Monitoring</div><p class="why-card-desc">Regular lab panels track your biomarkers throughout treatment. We adjust dosing based on real data — ensuring safety and maximizing your results.</p></div>
+      <div class="why-card"><span class="why-card-icon">🌿</span><div class="why-card-title">Evidence-Based Approach</div><p class="why-card-desc">Dr. Choudhary stays current with the latest peptide research. We use compounds with the strongest safety and efficacy evidence and are transparent about what's established vs. emerging.</p></div>
+      <div class="why-card"><span class="why-card-icon">🔒</span><div class="why-card-title">Complete Confidentiality</div><p class="why-card-desc">All consultations and treatment plans are handled with the utmost discretion and full HIPAA compliance. Your health journey is private.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div>
+    <div class="cta-text">Ready to Begin Your<br>Peptide Journey?</div>
+    <p class="cta-sub">Book a consultation with Dr. Choudhary — Fullerton, CA</p>
+  </div>
+  <a href="contact.html" class="btn-dark">Book Consultation</a>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="Logo-3.png" alt="Lily Med Spa" style="height:48px;width:auto;margin-bottom:20px;display:block;">
+      <p class="footer-tagline">World-class aesthetic and wellness treatments by a board-certified physician in Fullerton, California.</p>
+      <div class="footer-contact-item"><span>📍</span><span>140 E Commonwealth Ave, Fullerton, CA</span></div>
+      <div class="footer-contact-item"><span>📞</span><span>(657) 356-6116</span></div>
+      <div class="footer-contact-item"><span>✉️</span><span>lilymedicalcareinc@gmail.com</span></div>
+    </div>
+    <div><p class="footer-col-title">Services</p><ul class="footer-links"><li><a href="botox.html">Botox</a></li><li><a href="fillers.html">Dermal Fillers</a></li><li><a href="glp1.html">GLP-1 Weight Loss</a></li><li><a href="hair-restoration.html">Hair Restoration</a></li><li><a href="peptides.html">Peptide Therapy</a></li><li><a href="sexual-health.html">Sexual Health</a></li></ul></div>
+    <div><p class="footer-col-title">Peptide Programs</p><ul class="footer-links"><li><a href="#anti-aging">Anti-Aging</a></li><li><a href="#muscle">Muscle & Recovery</a></li><li><a href="#brain">Brain & Focus</a></li><li><a href="#longevity">Longevity & Wellness</a></li><li><a href="#fat-loss">Fat Loss & Metabolism</a></li></ul></div>
+    <div><p class="footer-col-title">Visit Us</p><ul class="footer-links"><li><a href="contact.html">Book Appointment</a></li><li><a href="doctor.html">Our Doctor</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Lily Medical Care, Inc. · Lily Med Spa · Fullerton, CA · Physician Owned & Operated</p>
+    <p class="footer-disclaimer">All peptide protocols are physician-supervised. Compounds are USA-manufactured to cGMP standards. Individual results may vary. Not for unsupervised use.</p>
+  </div>
+</footer>
+
+
+<!-- ══ TIDIO CHATBOT ══ -->
+<!-- To activate: 
+     1. Go to tidio.com and create a FREE account
+     2. Go to Settings → Developer → Your Public Key
+     3. Replace YOUR_TIDIO_KEY below with your actual key
+     4. Re-upload this file to GitHub — chatbot appears instantly! -->
+<script src="//code.tidio.co/YOUR_TIDIO_KEY.js" async></script>
+<!-- ══ END TIDIO ══ -->
+
+</body>
+</html>

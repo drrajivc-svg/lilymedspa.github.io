@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sexual Health & TRT | Lily Med Spa — Fullerton, CA</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream: #F8F5F0;
+    --warm-white: #F2EDE6;
+    --navy: #1A2235;
+    --deep-navy: #111827;
+    --slate: #2D3A4F;
+    --steel: #4A5568;
+    --gold: #C49A5A;
+    --light-gold: #D4B47A;
+    --pale-gold: #EDD89A22;
+    --accent: #C49A5A;
+    --accent-light: rgba(196,154,90,0.15);
+    --text-muted: #6B7280;
+    --text-light: rgba(255,255,255,0.55);
+    --border-dark: rgba(255,255,255,0.08);
+    --border-light: rgba(196,154,90,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep-navy);
+    color: white;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.5;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(17,24,39,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: white;
+    text-decoration: none;
+  }
+  .logo span { color: var(--gold); }
+
+  nav a {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    margin-left: 2.5rem;
+    transition: color 0.3s;
+  }
+  nav a:hover { color: var(--gold); }
+
+  .btn-book {
+    background: var(--gold) !important;
+    color: var(--deep-navy) !important;
+    padding: 0.6rem 1.5rem;
+    border-radius: 2px;
+    letter-spacing: 0.15em;
+    font-size: 0.68rem !important;
+    font-weight: 500 !important;
+    transition: background 0.3s !important;
+  }
+  .btn-book:hover { background: var(--light-gold) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    padding: 9rem 4rem 5rem;
+    gap: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 40%, rgba(196,154,90,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(45,58,79,0.4) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(196,154,90,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(196,154,90,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(196,154,90,0.3);
+    padding: 0.4rem 1rem;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: blink 2s ease-in-out infinite;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: white;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--text-light);
+    max-width: 480px;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .cta-primary {
+    background: var(--gold);
+    color: var(--deep-navy);
+    padding: 0.95rem 2.4rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+  .cta-primary:hover { background: var(--light-gold); transform: translateY(-2px); }
+
+  .cta-secondary {
+    color: white;
+    padding: 0.95rem 2.4rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: inline-block;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .cta-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── HERO STATS CARD ── */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: rgba(196,154,90,0.15);
+    animation: fadeIn 1.2s 0.4s ease both;
+  }
+
+  .hs-item {
+    background: rgba(26,34,53,0.9);
+    padding: 2rem 1.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hs-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .hs-item:hover::after { opacity: 1; }
+
+  .hs-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .hs-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  /* ── SECTION STYLES ── */
+  .section-dark { background: var(--deep-navy); padding: 6rem 4rem; }
+  .section-mid { background: var(--navy); padding: 6rem 4rem; }
+  .section-light { background: var(--cream); padding: 6rem 4rem; color: var(--deep-navy); }
+
+  .eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .section-h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .section-h2 em { font-style: italic; color: var(--gold); }
+  .section-light .section-h2 { color: var(--deep-navy); }
+
+  .section-p {
+    font-size: 0.95rem;
+    line-height: 1.95;
+    color: var(--text-light);
+    max-width: 600px;
+    margin-bottom: 3rem;
+  }
+  .section-light .section-p { color: #4A5568; }
+
+  /* ── WHAT IS TRT ── */
+  .what-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .trt-def-box {
+    background: rgba(196,154,90,0.06);
+    border: 1px solid rgba(196,154,90,0.15);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .trt-def-box p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .info-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .info-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0.4rem;
+  }
+
+  .info-text { font-size: 0.88rem; line-height: 1.7; color: var(--text-light); }
+  .info-text strong { color: white; font-weight: 400; }
+
+  /* ── SYMPTOMS GRID ── */
+  .symptoms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(196,154,90,0.1);
+    margin-top: 3rem;
+  }
+
+  .symptom-card {
+    background: var(--navy);
+    padding: 2rem 1.8rem;
+    transition: background 0.3s;
+  }
+  .symptom-card:hover { background: var(--slate); }
+
+  .symptom-icon {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .symptom-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+  .symptom-desc { font-size: 0.78rem; color: var(--text-light); line-height: 1.6; }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 1rem 0 3rem;
+  }
+  .gold-divider-line { flex: 1; height: 1px; background: rgba(196,154,90,0.2); }
+  .gold-divider-text {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  /* ── DOSING PROTOCOLS ── */
+  .protocols-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid rgba(196,154,90,0.15);
+    margin-bottom: 3rem;
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    padding: 1rem 2rem;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    white-space: nowrap;
+    transition: color 0.3s;
+  }
+  .tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 100%; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .tab-btn:hover { color: white; }
+  .tab-btn.active { color: var(--gold); }
+  .tab-btn.active::after { transform: scaleX(1); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .protocol-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .protocol-header {
+    margin-bottom: 2rem;
+  }
+
+  .protocol-badge {
+    display: inline-block;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+  }
+  .badge-standard { background: rgba(196,154,90,0.15); color: var(--gold); }
+  .badge-advanced { background: rgba(92,122,93,0.2); color: #8FB591; }
+  .badge-premium { background: rgba(139,109,180,0.15); color: #B89FD4; }
+  .badge-caution { background: rgba(220,80,80,0.12); color: #E88; }
+
+  .protocol-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: white;
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .protocol-sub {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .dose-highlight {
+    background: rgba(196,154,90,0.08);
+    border-left: 3px solid var(--gold);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .dose-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .dose-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: white;
+  }
+  .dose-note { font-size: 0.75rem; color: var(--text-light); margin-top: 0.3rem; }
+
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+  }
+
+  .schedule-table th {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid rgba(196,154,90,0.2);
+    text-align: left;
+    font-weight: 400;
+  }
+
+  .schedule-table td {
+    padding: 0.9rem 1rem;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.75);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    vertical-align: middle;
+  }
+
+  .schedule-table tr:hover td { background: rgba(196,154,90,0.04); }
+
+  .day-tag {
+    display: inline-block;
+    background: rgba(196,154,90,0.12);
+    color: var(--gold);
+    font-size: 0.68rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    margin-right: 0.3rem;
+  }
+
+  .benefit-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .benefit-chip {
+    font-size: 0.68rem;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid rgba(196,154,90,0.2);
+    color: var(--text-light);
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── INJECTION METHODS ── */
+  .injection-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: rgba(196,154,90,0.1);
+    margin-top: 3rem;
+  }
+
+  .inj-card {
+    background: var(--slate);
+    padding: 2.5rem;
+    transition: background 0.3s;
+  }
+  .inj-card:hover { background: #374151; }
+
+  .inj-icon { font-size: 2rem; margin-bottom: 1.2rem; display: block; }
+  .inj-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 0.4rem;
+  }
+  .inj-sub { font-size: 0.72rem; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem; }
+  .inj-desc { font-size: 0.82rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; }
+
+  .inj-points { display: flex; flex-direction: column; gap: 0.5rem; }
+  .inj-point { display: flex; gap: 0.6rem; font-size: 0.78rem; color: rgba(255,255,255,0.6); align-items: center; }
+  .inj-point::before { content: '✓'; color: var(--gold); font-size: 0.7rem; flex-shrink: 0; }
+
+  /* ── LAB MONITORING ── */
+  .lab-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .timeline-wrap {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline-wrap::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), rgba(196,154,90,0.1));
+  }
+
+  .tl-item {
+    position: relative;
+    padding-bottom: 2.5rem;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -2.4rem;
+    top: 0.3rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 4px rgba(196,154,90,0.15);
+  }
+
+  .tl-time {
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+  .tl-event {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 0.4rem;
+  }
+  .tl-note { font-size: 0.78rem; color: var(--text-light); line-height: 1.6; }
+
+  /* Lab markers table */
+  .lab-markers {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(196,154,90,0.15);
+  }
+
+  .lab-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.2s;
+    align-items: center;
+  }
+  .lab-row:hover { background: rgba(196,154,90,0.04); }
+  .lab-row:last-child { border-bottom: none; }
+  .lab-row.header { background: rgba(196,154,90,0.08); border-bottom: 1px solid rgba(196,154,90,0.2); }
+
+  .lab-row.header span {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .lab-marker-name { font-size: 0.85rem; color: white; }
+  .lab-target { font-size: 0.78rem; color: var(--text-light); }
+  .lab-why { font-size: 0.72rem; color: rgba(255,255,255,0.4); }
+
+  /* ── PRICING ── */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(196,154,90,0.15);
+    margin-top: 3rem;
+  }
+
+  .price-card {
+    background: var(--navy);
+    padding: 3rem 2.5rem;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .price-card:hover { background: var(--slate); }
+
+  .price-card.featured {
+    background: linear-gradient(160deg, rgba(196,154,90,0.12) 0%, var(--navy) 100%);
+    border-top: 2px solid var(--gold);
+  }
+
+  .price-popular {
+    position: absolute;
+    top: -1px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--deep-navy);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.3rem 1rem;
+  }
+
+  .price-tier {
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .price-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .price-amount {
+    margin-bottom: 0.5rem;
+  }
+  .price-currency {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--gold);
+    vertical-align: top;
+    margin-top: 0.5rem;
+    display: inline-block;
+  }
+  .price-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: white;
+    line-height: 1;
+  }
+  .price-period { font-size: 0.72rem; color: var(--text-light); letter-spacing: 0.1em; }
+
+  .price-divider { height: 1px; background: rgba(196,154,90,0.15); margin: 1.5rem 0; }
+
+  .price-includes { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; }
+  .price-item { display: flex; gap: 0.7rem; font-size: 0.8rem; color: rgba(255,255,255,0.65); align-items: flex-start; line-height: 1.5; }
+  .price-item.included::before { content: '✓'; color: var(--gold); flex-shrink: 0; }
+  .price-item.excluded::before { content: '–'; color: rgba(255,255,255,0.2); flex-shrink: 0; }
+
+  .price-cta {
+    display: block;
+    text-align: center;
+    padding: 0.85rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+    font-family: 'Jost', sans-serif;
+    width: 100%;
+  }
+  .price-cta-outline { border: 1px solid rgba(196,154,90,0.3); color: var(--gold); background: none; }
+  .price-cta-outline:hover { background: rgba(196,154,90,0.1); }
+  .price-cta-filled { background: var(--gold); color: var(--deep-navy); font-weight: 500; }
+  .price-cta-filled:hover { background: var(--light-gold); }
+
+  /* ── CONSULTATION ── */
+  .consult-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  .consult-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1rem;
+  }
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-group label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: white;
+    padding: 0.9rem 1rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+    -webkit-appearance: none;
+  }
+  .form-group input::placeholder { color: rgba(255,255,255,0.15); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: rgba(196,154,90,0.5); }
+  .form-group select option { background: var(--navy); }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+
+  .btn-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--deep-navy);
+    border: none;
+    padding: 1rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 0.5rem;
+  }
+  .btn-submit:hover { background: var(--light-gold); transform: translateY(-2px); }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer {
+    background: var(--deep-navy);
+    padding: 2.5rem 4rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .disclaimer p {
+    font-size: 0.72rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.3);
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0D1117;
+    padding: 2.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.5);
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-copy { font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.2); }
+  footer nav a {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.25);
+    text-decoration: none;
+    margin-left: 2rem;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  footer nav a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    header { padding: 1.5rem 2rem; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; gap: 3rem; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .section-dark, .section-mid, .section-light { padding: 4rem 2rem; }
+    .what-grid, .lab-section, .consult-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .symptoms-grid, .injection-grid { grid-template-columns: 1fr 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; gap: 1px; }
+    .protocol-card { grid-template-columns: 1fr; gap: 2rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem; }
+    footer nav a { margin: 0 0.8rem; }
+    .disclaimer { padding: 2rem; }
+  }
+  @media (max-width: 640px) {
+    nav { display: none; }
+    .symptoms-grid, .injection-grid { grid-template-columns: 1fr; }
+    .consult-form-grid { grid-template-columns: 1fr; }
+    .lab-row { grid-template-columns: 1fr 1fr; }
+    .lab-why { display: none; }
+  }
+
+
+  /* ── SITE-WIDE NAV OVERRIDE ── */
+  nav {
+    position: fixed !important;
+    top: 0 !important; left: 0 !important; right: 0 !important;
+    z-index: 10000 !important;
+    height: 80px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 60px !important;
+    background: rgba(8,8,8,0.97) !important;
+    backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(201,168,76,0.25) !important;
+    box-shadow: none !important;
+  }
+  .site-nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .site-nav-logo img { height: 44px; width: auto; }
+  .site-nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .site-nav-links a { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: rgba(250,250,248,0.7); text-decoration: none; transition: color 0.3s; position: relative; font-family: 'Jost', 'Montserrat', sans-serif; }
+  .site-nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C9A84C; transition: width 0.3s; }
+  .site-nav-links a:hover { color: #C9A84C !important; }
+  .site-nav-links a:hover::after { width: 100%; }
+  .site-nav-dropdown { position: relative; }
+  .site-nav-dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 16px; background: rgba(14,14,14,0.98); border: 1px solid rgba(201,168,76,0.25); border-radius: 4px; padding: 12px 0; min-width: 200px; opacity: 0; visibility: hidden; transition: all 0.3s; backdrop-filter: blur(20px); }
+  .site-nav-dropdown:hover .site-nav-dropdown-menu { opacity: 1; visibility: visible; margin-top: 8px; }
+  .site-nav-dropdown-menu a { display: block !important; padding: 10px 24px !important; font-size: 10px !important; letter-spacing: 2px !important; color: rgba(250,250,248,0.7) !important; transition: all 0.2s !important; }
+  .site-nav-dropdown-menu a:hover { color: #C9A84C !important; background: rgba(201,168,76,0.06) !important; padding-left: 30px !important; }
+  .site-nav-dropdown-menu a::after { display: none !important; }
+  .site-nav-book-btn { font-size: 10px !important; font-weight: 600 !important; letter-spacing: 3px !important; text-transform: uppercase !important; color: #080808 !important; background: #C9A84C !important; padding: 12px 24px !important; border-radius: 2px !important; text-decoration: none !important; transition: all 0.3s !important; font-family: 'Jost', 'Montserrat', sans-serif !important; }
+  .site-nav-book-btn:hover { background: #E8D5A0 !important; }
+  @media (max-width: 768px) { nav { padding: 0 24px !important; } .site-nav-links { display: none !important; } }
+
+
+  /* Push content below fixed nav */
+  body { padding-top: 80px; }
+  /* Fix hero padding since header is now fixed */
+  .hero { padding-top: 80px; }
+
+</style>
+</head>
+<body>
+
+<!-- ══════ NAVIGATION ══════ -->
+<nav>
+  <a href="index.html" class="site-nav-logo"><img src="Logo-3.png" alt="Lily Med Spa"></a>
+  <ul class="site-nav-links">
+    <li class="site-nav-dropdown">
+      <a href="#">Services ▾</a>
+      <div class="site-nav-dropdown-menu">
+        <a href="botox.html">Botox</a>
+        <a href="fillers.html">Dermal Fillers</a>
+        <a href="glp1.html">GLP-1 Weight Loss</a>
+        <a href="hair-restoration.html">Hair Restoration</a>
+        <a href="peptides.html">Peptide Therapy</a>
+        <a href="sexual-health.html">Sexual Health</a>
+      </div>
+    </li>
+    <li><a href="doctor.html">Our Doctor</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="site-nav-book-btn">Book Consultation</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-content" style="position:relative;z-index:1;">
+    <div class="hero-badge">Men's Sexual Health & Hormone Optimization</div>
+    <h1>Testosterone<br>Replacement<br><em>Therapy</em></h1>
+    <p class="hero-sub">Reclaim your energy, drive, and vitality with a physician-supervised TRT program tailored to your unique hormonal profile. Science-backed. Precision-dosed. Life-changing.</p>
+    <div class="hero-ctas">
+      <a href="#consult" class="cta-primary">Start Free Consultation</a>
+      <a href="#what-is-trt" class="cta-secondary">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-stats" style="position:relative;z-index:1;">
+    <div class="hs-item">
+      <div class="hs-num">300<span style="font-size:1.5rem">ng/dL</span></div>
+      <div class="hs-label">Clinical Low T<br>Threshold</div>
+    </div>
+    <div class="hs-item">
+      <div class="hs-num">500–900</div>
+      <div class="hs-label">Target Range<br>ng/dL on TRT</div>
+    </div>
+    <div class="hs-item">
+      <div class="hs-num">6–8</div>
+      <div class="hs-label">Weeks to First<br>Lab Recheck</div>
+    </div>
+    <div class="hs-item">
+      <div class="hs-num">100%</div>
+      <div class="hs-label">Physician<br>Supervised</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS TRT -->
+<section class="section-mid" id="what-is-trt">
+  <div class="what-grid">
+    <div>
+      <span class="eyebrow">Understanding the Therapy</span>
+      <h2 class="section-h2">What is<br>Testosterone<br><em>Replacement Therapy?</em></h2>
+      <div class="trt-def-box">
+        <p>"TRT is a medically supervised hormone therapy that restores testosterone levels to an optimal physiological range — addressing the root cause of low-T symptoms, not just masking them."</p>
+      </div>
+      <div class="info-list">
+        <div class="info-item"><div class="info-dot"></div><div class="info-text"><strong>Testosterone</strong> is the primary male sex hormone, governing energy, muscle mass, libido, mood, bone density, and metabolic health.</div></div>
+        <div class="info-item"><div class="info-dot"></div><div class="info-text"><strong>Natural decline</strong> begins around age 30, with levels dropping 1–2% per year. By 40, many men experience clinically significant deficiency.</div></div>
+        <div class="info-item"><div class="info-dot"></div><div class="info-text"><strong>TRT delivers</strong> exogenous testosterone via injectable, topical, or subcutaneous methods to restore levels to the optimal 500–900 ng/dL range.</div></div>
+        <div class="info-item"><div class="info-dot"></div><div class="info-text"><strong>Ongoing monitoring</strong> of testosterone, estradiol, hematocrit, and PSA ensures safety and protocol optimization throughout treatment.</div></div>
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow">Recognizing Low Testosterone</span>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:white;margin-bottom:0.8rem;line-height:1.2;">Signs You May<br><em style="color:var(--gold)">Be a Candidate</em></h3>
+      <p style="font-size:0.85rem;color:var(--text-light);line-height:1.8;margin-bottom:0;">Low testosterone affects 1 in 4 men over 30. These are the most common clinical presentations:</p>
+      <div class="symptoms-grid">
+        <div class="symptom-card">
+          <span class="symptom-icon">⚡</span>
+          <div class="symptom-title">Chronic Fatigue</div>
+          <div class="symptom-desc">Persistent low energy, poor motivation, and unexplained exhaustion regardless of sleep quality.</div>
+        </div>
+        <div class="symptom-card">
+          <span class="symptom-icon">🧠</span>
+          <div class="symptom-title">Brain Fog</div>
+          <div class="symptom-desc">Difficulty concentrating, reduced mental clarity, memory lapses, and cognitive slowness.</div>
+        </div>
+        <div class="symptom-card">
+          <span class="symptom-icon">💪</span>
+          <div class="symptom-title">Muscle Loss</div>
+          <div class="symptom-desc">Declining strength, muscle atrophy despite training, and increasing body fat — especially abdominal.</div>
+        </div>
+        <div class="symptom-card">
+          <span class="symptom-icon">🔥</span>
+          <div class="symptom-title">Low Libido</div>
+          <div class="symptom-desc">Diminished sex drive, reduced sexual performance, and decreased interest in intimacy.</div>
+        </div>
+        <div class="symptom-card">
+          <span class="symptom-icon">😔</span>
+          <div class="symptom-title">Mood Changes</div>
+          <div class="symptom-desc">Irritability, mild depression, increased anxiety, and reduced sense of well-being.</div>
+        </div>
+        <div class="symptom-card">
+          <span class="symptom-icon">🦴</span>
+          <div class="symptom-title">Bone Density</div>
+          <div class="symptom-desc">Reduced bone mineral density, increased fracture risk, and joint discomfort over time.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- LAB MONITORING -->
+<section class="section-mid" id="monitoring">
+  <span class="eyebrow">Safety & Optimization</span>
+  <h2 class="section-h2">Lab Monitoring<br><em>Timeline & Targets</em></h2>
+  <p class="section-p">Rigorous lab monitoring is what separates a safe, effective TRT program from a reckless one. Our protocol is built around data — every adjustment is evidence-based.</p>
+
+  <div class="lab-section">
+    <div>
+      <div class="timeline-wrap">
+        <div class="tl-item">
+          <div class="tl-time">Before Treatment Begins</div>
+          <div class="tl-event">Comprehensive Baseline Labs</div>
+          <div class="tl-note">Full hormone panel, metabolic markers, CBC, lipid panel, PSA, and thyroid. Establishes your personal baseline for all future comparisons.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Weeks 6 – 8</div>
+          <div class="tl-event">First Protocol Check</div>
+          <div class="tl-note">Testosterone, free T, estradiol, and hematocrit recheck. Protocol adjustments made if levels are outside optimal range or symptoms persist.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Month 3</div>
+          <div class="tl-event">Stability Confirmation</div>
+          <div class="tl-note">Full panel recheck. Most patients reach stable, optimized levels by this point. PSA checked for men over 40.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Every 3 – 6 Months</div>
+          <div class="tl-event">Ongoing Maintenance Labs</div>
+          <div class="tl-note">Routine monitoring for safety and continued optimization. Frequency determined by individual stability and dose level.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;">Key Lab Markers</div>
+      <div class="lab-markers">
+        <div class="lab-row header">
+          <span>Marker</span>
+          <span>Target Range</span>
+          <span>Why We Monitor</span>
+        </div>
+        <div class="lab-row">
+          <div class="lab-marker-name">Total Testosterone</div>
+          <div class="lab-target" style="color:var(--gold);">500 – 900 ng/dL</div>
+          <div class="lab-why">Primary efficacy marker</div>
+        </div>
+        <div class="lab-row">
+          <div class="lab-marker-name">Free Testosterone</div>
+          <div class="lab-target">Optimal range by age</div>
+          <div class="lab-why">Bioavailable fraction</div>
+        </div>
+        <div class="lab-row">
+          <div class="lab-marker-name">Estradiol (E2)</div>
+          <div class="lab-target">20 – 40 pg/mL</div>
+          <div class="lab-why">Aromatization control</div>
+        </div>
+        <div class="lab-row">
+          <div class="lab-marker-name">Hematocrit</div>
+          <div class="lab-target">&lt; 54%</div>
+          <div class="lab-why">Cardiovascular safety</div>
+        </div>
+        <div class="lab-row">
+          <div class="lab-marker-name">PSA</div>
+          <div class="lab-target">Age-appropriate</div>
+          <div class="lab-why">Prostate health</div>
+        </div>
+        <div class="lab-row">
+          <div class="lab-marker-name">SHBG</div>
+          <div class="lab-target">10 – 57 nmol/L</div>
+          <div class="lab-why">Binding protein balance</div>
+        </div>
+        <div class="lab-row">
+          <div class="lab-marker-name">LH / FSH</div>
+          <div class="lab-target">Baseline only</div>
+          <div class="lab-why">Fertility assessment</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section-dark" id="pricing">
+  <span class="eyebrow">Transparent Pricing</span>
+  <h2 class="section-h2">TRT Program<br><em>Investment</em></h2>
+  <p class="section-p">All programs are month-to-month with no long-term contracts. Lab costs may vary. Initial consultation is always free.</p>
+
+  <div class="pricing-grid">
+    <!-- Starter -->
+    <div class="price-card">
+      <div class="price-tier">Starter</div>
+      <div class="price-name">Standard<br>TRT Program</div>
+      <div class="price-amount">
+        <span class="price-currency">$</span><span class="price-number">199</span>
+      </div>
+      <div class="price-period">per month</div>
+      <div class="price-divider"></div>
+      <div class="price-includes">
+        <div class="price-item included">Testosterone Cypionate (monthly supply)</div>
+        <div class="price-item included">Physician consultation — initial</div>
+        <div class="price-item included">Once or twice-weekly injection protocol</div>
+        <div class="price-item included">Injection supplies & needles included</div>
+        <div class="price-item excluded">Lab work (billed separately)</div>
+        <div class="price-item excluded">Ancillary medications (e.g., anastrozole)</div>
+        <div class="price-item excluded">Microdosing / EOD protocol</div>
+      </div>
+      <a href="#consult" class="price-cta price-cta-outline">Get Started</a>
+    </div>
+
+    <!-- Optimized (Featured) -->
+    <div class="price-card featured">
+      <div class="price-popular">Most Popular</div>
+      <div class="price-tier">Optimized</div>
+      <div class="price-name">Complete TRT<br>Package</div>
+      <div class="price-amount">
+        <span class="price-currency">$</span><span class="price-number">349</span>
+      </div>
+      <div class="price-period">per month</div>
+      <div class="price-divider"></div>
+      <div class="price-includes">
+        <div class="price-item included">Testosterone Cypionate (monthly supply)</div>
+        <div class="price-item included">All follow-up physician consultations</div>
+        <div class="price-item included">Twice-weekly or 3×/week protocol</div>
+        <div class="price-item included">Injection supplies & syringes</div>
+        <div class="price-item included">Labs at 6–8 weeks included</div>
+        <div class="price-item included">Estradiol management if needed</div>
+        <div class="price-item excluded">Microdosing EOD (upgrade available)</div>
+      </div>
+      <a href="#consult" class="price-cta price-cta-filled">Start This Program</a>
+    </div>
+
+    <!-- Premium -->
+    <div class="price-card">
+      <div class="price-tier">Premium</div>
+      <div class="price-name">Elite TRT<br>Optimization</div>
+      <div class="price-amount">
+        <span class="price-currency">$</span><span class="price-number">549</span>
+      </div>
+      <div class="price-period">per month</div>
+      <div class="price-divider"></div>
+      <div class="price-includes">
+        <div class="price-item included">Testosterone Cypionate (monthly supply)</div>
+        <div class="price-item included">Unlimited physician consultations</div>
+        <div class="price-item included">Microdosing / EOD premium protocol</div>
+        <div class="price-item included">All injection supplies</div>
+        <div class="price-item included">Quarterly labs included</div>
+        <div class="price-item included">Ancillary meds (anastrozole, HCG if needed)</div>
+        <div class="price-item included">Priority same-day provider access</div>
+      </div>
+      <a href="#consult" class="price-cta price-cta-outline">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTATION -->
+<section class="section-mid" id="consult">
+  <div class="consult-grid">
+    <div>
+      <span class="eyebrow">Begin Your Transformation</span>
+      <h2 class="section-h2">Free TRT<br><em>Consultation</em></h2>
+      <p class="section-p">Our medical team will review your symptoms, health history, and current lab work to design a personalized TRT protocol that's right for your body and goals.</p>
+      <div class="info-list">
+        <div class="info-item"><div class="info-dot"></div><div class="info-text"><strong>No labs required</strong> to start — we order everything at your initial visit.</div></div>
+        <div class="info-item"><div class="info-dot"></div><div class="info-text"><strong>Results typically felt</strong> within 3–6 weeks of initiating therapy.</div></div>
+        <div class="info-item"><div class="info-dot"></div><div class="info-text"><strong>Month-to-month programs</strong> — no long-term commitment required.</div></div>
+        <div class="info-item"><div class="info-dot"></div><div class="info-text"><strong>Home injection training</strong> included — most patients self-administer within 1–2 sessions.</div></div>
+      </div>
+    </div>
+    <form onsubmit="handleSubmit(event)">
+      <div class="consult-form-grid">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="John">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Smith">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="john@email.com">
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(555) 000-0000">
+        </div>
+        <div class="form-group">
+          <label>Age</label>
+          <input type="number" placeholder="35">
+        </div>
+        <div class="form-group">
+          <label>Have you had labs done?</label>
+          <select>
+            <option value="">Select...</option>
+            <option>Yes, within 6 months</option>
+            <option>Yes, over 6 months ago</option>
+            <option>No — need labs</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Primary Symptoms or Goals</label>
+          <select>
+            <option value="">Select your main concern...</option>
+            <option>Low energy & chronic fatigue</option>
+            <option>Low libido / sexual health</option>
+            <option>Muscle loss & body composition</option>
+            <option>Mood / brain fog</option>
+            <option>General optimization & longevity</option>
+            <option>Multiple symptoms</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Tell Us More (Optional)</label>
+          <textarea placeholder="Share any symptoms, questions, or previous TRT experience..."></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn-submit">Request My Free TRT Consultation</button>
+    </form>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <p><strong style="color:rgba(255,255,255,0.5)">Medical Disclaimer:</strong> The information on this page is for educational purposes only and does not constitute medical advice. Testosterone Replacement Therapy is a prescription medication administered under the supervision of a licensed physician. Individual results vary based on baseline hormone levels, health status, lifestyle, and adherence to protocol. TRT is not appropriate for all patients. Potential risks including polycythemia, infertility, and cardiovascular effects will be discussed during consultation. All programs require a complete medical evaluation and lab work prior to initiation. This content has not been evaluated by the FDA.</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">LILY<span>✦</span> MED SPA</div>
+  <div class="footer-copy">© 2025 Lily Med Spa. All rights reserved.</div>
+  <nav>
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </nav>
+</footer>
+
+<script>
+function switchTab(index, e) {
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', i === index);
+  });
+  document.querySelectorAll('.tab-content').forEach((c, i) => {
+    c.classList.toggle('active', i === index);
+  });
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-submit');
+  btn.textContent = 'Consultation Request Received ✓';
+  btn.style.background = '#5C7A5D';
+  setTimeout(() => {
+    btn.textContent = 'Request My Free TRT Consultation';
+    btn.style.background = '';
+    e.target.reset();
+  }, 4000);
+}
+</script>
+
+
+<!-- ══ TIDIO CHATBOT ══ -->
+<!-- To activate: 
+     1. Go to tidio.com and create a FREE account
+     2. Go to Settings → Developer → Your Public Key
+     3. Replace YOUR_TIDIO_KEY below with your actual key
+     4. Re-upload this file to GitHub — chatbot appears instantly! -->
+<script src="//code.tidio.co/YOUR_TIDIO_KEY.js" async></script>
+<!-- ══ END TIDIO ══ -->
+
+</body>
+</html>

@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lily Med Spa | Fullerton, CA — Luxury Aesthetic Medicine</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8D5A0;
+  --gold-dark: #9A7A30;
+  --black: #080808;
+  --black-mid: #111111;
+  --black-soft: #1A1A1A;
+  --black-card: #141414;
+  --cream: #F5F0E8;
+  --cream-soft: #EDE8DE;
+  --white: #FAFAF8;
+  --text-muted: rgba(250,250,248,0.45);
+  --text-dim: rgba(250,250,248,0.7);
+  --border-gold: rgba(201,168,76,0.25);
+  --border-gold-bright: rgba(201,168,76,0.5);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ══════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  background: rgba(8,8,8,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-gold);
+  transition: all 0.3s ease;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.nav-logo img {
+  height: 44px;
+  width: auto;
+  filter: brightness(1.1);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 16px;
+  background: rgba(14,14,14,0.98);
+  border: 1px solid var(--border-gold);
+  border-radius: 4px;
+  padding: 12px 0;
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  backdrop-filter: blur(20px);
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  margin-top: 8px;
+}
+
+.nav-dropdown-menu a {
+  display: block;
+  padding: 10px 24px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  transition: all 0.2s;
+}
+
+.nav-dropdown-menu a:hover {
+  color: var(--gold);
+  background: rgba(201,168,76,0.06);
+  padding-left: 30px;
+}
+
+.nav-dropdown-menu a::after { display: none; }
+
+.nav-book-btn {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--black) !important;
+  background: var(--gold);
+  padding: 12px 24px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.nav-book-btn:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+}
+
+.nav-book-btn::after { display: none !important; }
+
+/* ══════════════════════════════════════
+   HERO SECTION
+══════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 60% 80% at 70% 50%, rgba(201,168,76,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 50%),
+    linear-gradient(135deg, #080808 0%, #0F0F0F 50%, #080808 100%);
+}
+
+.hero-lines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.15), transparent);
+}
+
+.hero-line:nth-child(1) { top: 25%; width: 100%; animation: lineSweep 8s ease-in-out infinite; }
+.hero-line:nth-child(2) { top: 55%; width: 60%; left: 20%; animation: lineSweep 8s ease-in-out infinite 2s; }
+.hero-line:nth-child(3) { top: 80%; width: 80%; left: 10%; animation: lineSweep 8s ease-in-out infinite 4s; }
+
+@keyframes lineSweep {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 120px 60px 80px;
+  max-width: 760px;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.hero-eyebrow-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero-eyebrow span {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: 300;
+  line-height: 1.0;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+
+.hero-title em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.hero-subtitle {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  line-height: 1.8;
+  margin-bottom: 48px;
+  max-width: 480px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  padding: 16px 36px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.3s;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(201,168,76,0.3);
+}
+
+.btn-outline {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: transparent;
+  padding: 16px 36px;
+  border: 1px solid var(--border-gold-bright);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.3s;
+  display: inline-block;
+}
+
+.btn-outline:hover {
+  background: rgba(201,168,76,0.08);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.hero-right {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-badge-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.hero-badge {
+  background: rgba(20,20,20,0.8);
+  border: 1px solid var(--border-gold);
+  border-radius: 4px;
+  padding: 24px 28px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s;
+}
+
+.hero-badge:hover {
+  border-color: var(--gold);
+  transform: translateX(-4px);
+}
+
+.hero-badge-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.hero-badge-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ══════════════════════════════════════
+   MARQUEE STRIP
+══════════════════════════════════════ */
+.marquee-strip {
+  background: var(--gold);
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-inner {
+  display: inline-block;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-inner span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--black);
+  padding: 0 40px;
+}
+
+.marquee-inner span::before {
+  content: '✦';
+  margin-right: 40px;
+  opacity: 0.6;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ══════════════════════════════════════
+   SERVICES SECTION
+══════════════════════════════════════ */
+.section {
+  padding: 120px 60px;
+}
+
+.section-cream {
+  background: var(--cream);
+  color: var(--black);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.section-cream .section-label {
+  color: var(--gold-dark);
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--white);
+}
+
+.section-cream .section-title {
+  color: var(--black);
+}
+
+.section-title em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.section-cream .section-title em {
+  color: var(--gold-dark);
+}
+
+.section-sub {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-muted);
+  margin-top: 16px;
+  letter-spacing: 1px;
+}
+
+.section-cream .section-sub {
+  color: rgba(8,8,8,0.55);
+}
+
+/* Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.service-card {
+  position: relative;
+  background: var(--black-card);
+  border: 1px solid var(--border-gold);
+  padding: 52px 44px;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.service-card:hover::before { opacity: 1; }
+.service-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+
+.service-card-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px;
+  font-weight: 300;
+  color: rgba(201,168,76,0.12);
+  line-height: 1;
+  margin-bottom: 24px;
+  transition: color 0.4s;
+}
+
+.service-card:hover .service-card-num {
+  color: rgba(201,168,76,0.25);
+}
+
+.service-card-icon {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  font-size: 16px;
+  transition: all 0.4s;
+}
+
+.service-card:hover .service-card-icon {
+  background: rgba(201,168,76,0.1);
+  border-color: var(--gold);
+}
+
+.service-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.service-card-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+.service-card-link {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 0.3s;
+}
+
+.service-card:hover .service-card-link { gap: 14px; }
+
+/* ══════════════════════════════════════
+   WHY LILY SECTION (CREAM)
+══════════════════════════════════════ */
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.why-left {}
+
+.why-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.why-feature {
+  padding: 32px;
+  background: rgba(8,8,8,0.04);
+  border: 1px solid rgba(8,8,8,0.1);
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.why-feature:hover {
+  background: rgba(8,8,8,0.07);
+  border-color: var(--gold-dark);
+  transform: translateY(-2px);
+}
+
+.why-feature-icon {
+  font-size: 22px;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.why-feature-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.why-feature-desc {
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(8,8,8,0.6);
+  line-height: 1.7;
+}
+
+.why-right {
+  position: relative;
+}
+
+.why-image-frame {
+  background: var(--black-card);
+  border: 1px solid var(--border-gold);
+  padding: 48px;
+  position: relative;
+}
+
+.why-image-frame::before {
+  content: '';
+  position: absolute;
+  top: -12px; right: -12px;
+  width: 60%; height: 60%;
+  border-top: 1px solid var(--gold);
+  border-right: 1px solid var(--gold);
+}
+
+.why-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+
+.why-quote-attr {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.why-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 32px;
+}
+
+.why-stat {
+  background: rgba(201,168,76,0.06);
+  border: 1px solid var(--border-gold);
+  padding: 24px;
+  text-align: center;
+}
+
+.why-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.why-stat-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ══════════════════════════════════════
+   DOCTOR PREVIEW SECTION
+══════════════════════════════════════ */
+.doctor-section {
+  padding: 120px 60px;
+  background: var(--black-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.doctor-section::before {
+  content: '';
+  position: absolute;
+  right: -200px; top: -200px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.05) 0%, transparent 70%);
+}
+
+.doctor-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.doctor-image-wrap {
+  position: relative;
+}
+
+.doctor-image-bg {
+  background: linear-gradient(135deg, var(--black-card), rgba(201,168,76,0.05));
+  border: 1px solid var(--border-gold);
+  padding: 40px;
+  position: relative;
+}
+
+.doctor-image-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -12px; left: -12px;
+  width: 50%; height: 50%;
+  border-bottom: 1px solid var(--gold);
+  border-left: 1px solid var(--gold);
+}
+
+.doctor-placeholder {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: linear-gradient(180deg, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.02) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.doctor-placeholder-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 100px;
+  font-weight: 300;
+  color: rgba(201,168,76,0.15);
+  position: absolute;
+}
+
+.doctor-actual-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.doctor-name-badge {
+  position: absolute;
+  bottom: -20px; right: -20px;
+  background: var(--gold);
+  color: var(--black);
+  padding: 16px 24px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+
+.doctor-content {}
+
+.doctor-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.doctor-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.doctor-title {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 32px;
+}
+
+.doctor-divider {
+  width: 50px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 32px;
+  opacity: 0.5;
+}
+
+.doctor-bio {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-dim);
+  line-height: 1.9;
+  margin-bottom: 40px;
+}
+
+.doctor-credentials {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.doctor-cred {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-dim);
+}
+
+.doctor-cred::before {
+  content: '✦';
+  color: var(--gold);
+  font-size: 8px;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════
+   CONTACT CTA STRIP
+══════════════════════════════════════ */
+.cta-strip {
+  background: var(--gold);
+  padding: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.cta-strip-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--black);
+  line-height: 1.2;
+}
+
+.cta-strip-sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(8,8,8,0.65);
+  margin-top: 8px;
+  letter-spacing: 1px;
+}
+
+.btn-dark {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--black);
+  padding: 18px 40px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.3s;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.btn-dark:hover {
+  background: #1A1A1A;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer {
+  background: var(--black);
+  border-top: 1px solid var(--border-gold);
+  padding: 80px 60px 40px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 60px;
+  max-width: 1300px;
+  margin: 0 auto 60px;
+}
+
+.footer-logo img {
+  height: 48px;
+  width: auto;
+  margin-bottom: 20px;
+}
+
+.footer-tagline {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.footer-contact-item span:first-child {
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.footer-col-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+  letter-spacing: 0.5px;
+}
+
+.footer-links a:hover { color: var(--gold); }
+
+.footer-bottom {
+  border-top: 1px solid var(--border-gold);
+  padding-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.footer-copy {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.footer-disclaimer {
+  font-size: 10px;
+  font-weight: 300;
+  color: rgba(250,250,248,0.25);
+  text-align: right;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.fade-up-1 { animation-delay: 0.1s; }
+.fade-up-2 { animation-delay: 0.3s; }
+.fade-up-3 { animation-delay: 0.5s; }
+.fade-up-4 { animation-delay: 0.7s; }
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .doctor-inner { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .hero-right { display: none; }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .section { padding: 80px 24px; }
+  .hero-content { padding: 120px 24px 60px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .why-features { grid-template-columns: 1fr; }
+  .cta-strip { flex-direction: column; padding: 40px 24px; text-align: center; }
+  .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  .footer-disclaimer { text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════ NAVIGATION ══════ -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="Logo-3.png" alt="Lily Med Spa">
+  </a>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="#">Services ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="botox.html">Botox</a>
+        <a href="fillers.html">Dermal Fillers</a>
+        <a href="glp1.html">GLP-1 Weight Loss</a>
+        <a href="hair-restoration.html">Hair Restoration</a>
+        <a href="peptides.html">Peptide Therapy</a>
+        <a href="sexual-health.html">Sexual Health</a>
+      </div>
+    </li>
+    <li><a href="doctor.html">Our Doctor</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-book-btn">Book Consultation</a>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines">
+    <div class="hero-line"></div>
+    <div class="hero-line"></div>
+    <div class="hero-line"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow fade-up fade-up-1">
+      <div class="hero-eyebrow-line"></div>
+      <span>Luxury Aesthetic Medicine · Fullerton, CA</span>
+    </div>
+
+    <h1 class="hero-title fade-up fade-up-2">
+      Reveal Your<br><em>Radiance</em>
+    </h1>
+
+    <p class="hero-subtitle fade-up fade-up-3">
+      World-class aesthetic treatments delivered by a board-certified physician. Where science meets artistry for results that feel naturally you.
+    </p>
+
+    <div class="hero-buttons fade-up fade-up-4">
+      <a href="contact.html" class="btn-primary">Book Consultation</a>
+      <a href="#services" class="btn-outline">Explore Services</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-badge-group">
+      <div class="hero-badge">
+        <div class="hero-badge-num">MD</div>
+        <div class="hero-badge-label">Board Certified Physician</div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-num">6+</div>
+        <div class="hero-badge-label">Speciality Services</div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-num">FDA</div>
+        <div class="hero-badge-label">Approved Products Only</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ MARQUEE ══════ -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>Botox</span>
+    <span>Dermal Fillers</span>
+    <span>GLP-1 Weight Loss</span>
+    <span>Hair Restoration</span>
+    <span>Peptide Therapy</span>
+    <span>Sexual Health</span>
+    <span>Physician Directed</span>
+    <span>Natural Results</span>
+    <span>Fullerton CA</span>
+    <span>Botox</span>
+    <span>Dermal Fillers</span>
+    <span>GLP-1 Weight Loss</span>
+    <span>Hair Restoration</span>
+    <span>Peptide Therapy</span>
+    <span>Sexual Health</span>
+    <span>Physician Directed</span>
+    <span>Natural Results</span>
+    <span>Fullerton CA</span>
+  </div>
+</div>
+
+<!-- ══════ SERVICES ══════ -->
+<section class="section" id="services">
+  <div class="section-header">
+    <span class="section-label">What We Offer</span>
+    <h2 class="section-title">Our <em>Signature</em> Services</h2>
+    <p class="section-sub">Physician-directed treatments tailored to your unique goals</p>
+  </div>
+
+  <div class="services-grid">
+
+    <a href="botox.html" class="service-card">
+      <div class="service-card-num">01</div>
+      <div class="service-card-icon">💉</div>
+      <h3 class="service-card-title">Botox</h3>
+      <p class="service-card-desc">Safe, effective & non-surgical anti-aging treatments. Forehead lines, frown lines, crow's feet, brow lift and more — all with natural, refreshed results.</p>
+      <div class="service-card-link">Learn More →</div>
+    </a>
+
+    <a href="fillers.html" class="service-card">
+      <div class="service-card-num">02</div>
+      <div class="service-card-icon">✨</div>
+      <h3 class="service-card-title">Dermal Fillers</h3>
+      <p class="service-card-desc">Restore volume, contour & youthful radiance. Lip augmentation, facial contouring, nasolabial folds, chin enhancement and full face rejuvenation.</p>
+      <div class="service-card-link">Learn More →</div>
+    </a>
+
+    <a href="glp1.html" class="service-card">
+      <div class="service-card-num">03</div>
+      <div class="service-card-icon">⚖️</div>
+      <h3 class="service-card-title">GLP-1 Weight Loss</h3>
+      <p class="service-card-desc">Medical weight management with Semaglutide & Tirzepatide. Physician-supervised programs designed for sustainable, meaningful results.</p>
+      <div class="service-card-link">Learn More →</div>
+    </a>
+
+    <a href="hair-restoration.html" class="service-card">
+      <div class="service-card-num">04</div>
+      <div class="service-card-icon">🌿</div>
+      <h3 class="service-card-title">Hair Restoration</h3>
+      <p class="service-card-desc">Advanced hair transplant procedures by a fellowship-trained surgeon. FUE & FUT techniques for natural, permanent results you'll love.</p>
+      <div class="service-card-link">Learn More →</div>
+    </a>
+
+    <a href="peptides.html" class="service-card">
+      <div class="service-card-num">05</div>
+      <div class="service-card-icon">🔬</div>
+      <h3 class="service-card-title">Peptide Therapy</h3>
+      <p class="service-card-desc">Cutting-edge peptide protocols for longevity, recovery, metabolic optimization and anti-aging. AOD 9604, MOTS-C, NAD⁺, KLOW and more.</p>
+      <div class="service-card-link">Learn More →</div>
+    </a>
+
+    <a href="sexual-health.html" class="service-card">
+      <div class="service-card-num">06</div>
+      <div class="service-card-icon">♾️</div>
+      <h3 class="service-card-title">Sexual Health</h3>
+      <p class="service-card-desc">Discreet, physician-directed hormone optimization and sexual wellness programs for both men and women. Reclaim your vitality and confidence.</p>
+      <div class="service-card-link">Learn More →</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ══════ WHY LILY (CREAM SECTION) ══════ -->
+<section class="section section-cream">
+  <div class="why-grid">
+    <div class="why-left">
+      <span class="section-label">Why Choose Us</span>
+      <h2 class="section-title">Satisfaction <em>Guaranteed</em></h2>
+      <p class="section-sub">Every treatment is performed with precision, artistry and genuine care for your wellbeing.</p>
+
+      <div class="why-features">
+        <div class="why-feature">
+          <span class="why-feature-icon">🏥</span>
+          <div class="why-feature-title">Physician Directed</div>
+          <p class="why-feature-desc">Every treatment is overseen by Dr. Choudhary, a board-certified internal medicine physician.</p>
+        </div>
+        <div class="why-feature">
+          <span class="why-feature-icon">📅</span>
+          <div class="why-feature-title">Flexible Scheduling</div>
+          <p class="why-feature-desc">Convenient appointment times including same-day availability for your busy lifestyle.</p>
+        </div>
+        <div class="why-feature">
+          <span class="why-feature-icon">🎯</span>
+          <div class="why-feature-title">Personalized Care</div>
+          <p class="why-feature-desc">Individualized treatment plans tailored specifically to your goals and concerns.</p>
+        </div>
+        <div class="why-feature">
+          <span class="why-feature-icon">🌿</span>
+          <div class="why-feature-title">Natural Results</div>
+          <p class="why-feature-desc">We prioritize natural, balanced outcomes using only FDA-approved products and techniques.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-right">
+      <div class="why-image-frame">
+        <p class="why-quote">"Aesthetic treatments should enhance your natural features — not change who you are."</p>
+        <p class="why-quote-attr">— Dr. Rajiv Choudhary, MD, MPH</p>
+
+        <div class="why-stats">
+          <div class="why-stat">
+            <div class="why-stat-num">Board</div>
+            <div class="why-stat-label">Certified MD</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">FDA</div>
+            <div class="why-stat-label">Approved Only</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">6+</div>
+            <div class="why-stat-label">Specialities</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">100%</div>
+            <div class="why-stat-label">Satisfaction Focus</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ DOCTOR PREVIEW ══════ -->
+<section class="doctor-section">
+  <div class="doctor-inner">
+    <div class="doctor-image-wrap">
+      <div class="doctor-image-bg">
+        <div class="doctor-placeholder">
+          <img src="doctor-photo.jpg" alt="Dr. Rajiv Choudhary" class="doctor-actual-img" onerror="this.style.display='none'; this.parentNode.querySelector('.doctor-placeholder-text').style.display='block'">
+          <span class="doctor-placeholder-text" style="display:none">RC</span>
+        </div>
+        <div class="doctor-name-badge">Dr. Rajiv Choudhary<br>MD · MPH · Founder</div>
+      </div>
+    </div>
+
+    <div class="doctor-content">
+      <p class="doctor-eyebrow">Meet Your Physician</p>
+      <h2 class="doctor-name">Dr. Rajiv<br>Choudhary</h2>
+      <p class="doctor-title">MD, MPH — CEO & Founder, Lily Med Spa</p>
+      <div class="doctor-divider"></div>
+      <p class="doctor-bio">Dr. Choudhary is a physician dedicated to delivering patient-centered medical care with a strong focus on safety, precision, and natural results. As the founder of Lily Med-Spa, he combines clinical expertise with an artistic approach to aesthetic medicine.</p>
+
+      <div class="doctor-credentials">
+        <div class="doctor-cred">MD — Board Certified Internal Medicine Physician</div>
+        <div class="doctor-cred">MPH — Masters in Public Health, University of Wisconsin</div>
+        <div class="doctor-cred">Fellowship — Hair Transplant Surgery (ASAHRS)</div>
+        <div class="doctor-cred">Specialties: Aesthetics, Hair Restoration, Weight Management</div>
+      </div>
+
+      <a href="doctor.html" class="btn-outline">Full Profile →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CTA STRIP ══════ -->
+<div class="cta-strip">
+  <div>
+    <div class="cta-strip-text">Ready to Reveal Your Radiance?</div>
+    <p class="cta-strip-sub">Schedule your complimentary consultation with Dr. Choudhary today</p>
+  </div>
+  <a href="contact.html" class="btn-dark">Book Your Consultation</a>
+</div>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-logo">
+      <img src="Logo-3.png" alt="Lily Med Spa">
+      <p class="footer-tagline">World-class aesthetic treatments delivered by a board-certified physician in Fullerton, California.</p>
+      <div class="footer-contact-item">
+        <span>📍</span>
+        <span>140 E Commonwealth Ave, Fullerton, CA</span>
+      </div>
+      <div class="footer-contact-item">
+        <span>📞</span>
+        <span>(657) 356-6116</span>
+      </div>
+      <div class="footer-contact-item">
+        <span>✉️</span>
+        <span>lilymedicalcareinc@gmail.com</span>
+      </div>
+    </div>
+
+    <div>
+      <p class="footer-col-title">Services</p>
+      <ul class="footer-links">
+        <li><a href="botox.html">Botox</a></li>
+        <li><a href="fillers.html">Dermal Fillers</a></li>
+        <li><a href="glp1.html">GLP-1 Weight Loss</a></li>
+        <li><a href="hair-restoration.html">Hair Restoration</a></li>
+        <li><a href="peptides.html">Peptide Therapy</a></li>
+        <li><a href="sexual-health.html">Sexual Health</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-col-title">About</p>
+      <ul class="footer-links">
+        <li><a href="doctor.html">Our Doctor</a></li>
+        <li><a href="doctor.html#credentials">Credentials</a></li>
+        <li><a href="doctor.html#expertise">Areas of Expertise</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-col-title">Visit Us</p>
+      <ul class="footer-links">
+        <li><a href="contact.html">Book Appointment</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="contact.html#location">Location & Hours</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Lily Medical Care, Inc. · Lily Med Spa · Fullerton, CA · Physician Owned & Operated</p>
+    <p class="footer-disclaimer">Results may vary. All treatments are performed by or under the direct supervision of a licensed physician. For medical emergencies, call 911.</p>
+  </div>
+</footer>
+
+
+<!-- ══ TIDIO CHATBOT ══ -->
+<!-- To activate: 
+     1. Go to tidio.com and create a FREE account
+     2. Go to Settings → Developer → Your Public Key
+     3. Replace YOUR_TIDIO_KEY below with your actual key
+     4. Re-upload this file to GitHub — chatbot appears instantly! -->
+<script src="//code.tidio.co/YOUR_TIDIO_KEY.js" async></script>
+<!-- ══ END TIDIO ══ -->
+
+</body>
+</html>
