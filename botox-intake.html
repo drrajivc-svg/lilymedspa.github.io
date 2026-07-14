@@ -422,13 +422,13 @@ const YN = (id,q,detailLabel) => `
       ${["No","Yes"].map(v=>`
         <label class="pill"><input type="radio" name="${id}" value="${v}"
           ${S.data[id]===v?"checked":""}
-          onchange="S.data['${id}']='${v}';document.getElementById('${id}_d').classList.toggle('show',this.value==='Yes')">
+          onchange="S.data['${id}']='${v}';var _d=document.getElementById('${id}_d');if(_d)_d.classList.toggle('show',this.value==='Yes');var _m=document.getElementById('${id}_more');if(_m)_m.classList.toggle('show',this.value==='Yes')">
         <span>${v}</span></label>`).join("")}
     </div>
-    <div class="follow ${S.data[id]==="Yes"?"show":""}" id="${id}_d">
+    ${detailLabel?`<div class="follow ${S.data[id]==="Yes"?"show":""}" id="${id}_d">
       <label class="f" style="margin:.6rem 0 0"><span class="t">${detailLabel}</span>
         <textarea oninput="S.data['${id}_detail']=this.value">${esc(S.data[id+"_detail"]||"")}</textarea></label>
-    </div>
+    </div>`:""}
   </div>`;
 
 R.allergies = () => `
@@ -459,7 +459,30 @@ R.history = () => `
     <p class="stepcount">Step 5 &middot; Treatment history</p>
     <h2>Cosmetic treatment &amp; surgery history</h2>
     <div class="card">
-      ${YN("recentTx","Have you had any Botox / dermal filler treatments recently?","If yes, please state when & explain:")}
+      ${YN("recentTx","Have you had any Botox / dermal filler treatments before?","")}
+      <div class="follow ${S.data.recentTx==="Yes"?"show":""}" id="recentTx_more" style="margin-top:0">
+        <div class="row">
+          <label class="f"><span class="t">When was your last treatment?</span>
+            <input type="text" placeholder="e.g. March 2026" value="${esc(S.data.prevDate||"")}"
+              oninput="S.data.prevDate=this.value"></label>
+          <label class="f"><span class="t">Product used</span>
+            <select onchange="S.data.prevProduct=this.value">
+              ${["","Botox","Dysport","Xeomin","Jeuveau","Daxxify","Dermal filler","Not sure"].map(o=>
+                `<option ${S.data.prevProduct===o?"selected":""}>${o}</option>`).join("")}
+            </select></label>
+        </div>
+        <label class="f"><span class="t">How many units did you receive? (if known)</span>
+          <input type="text" placeholder="e.g. 40 units total, or 'not sure'" value="${esc(S.data.prevUnits||"")}"
+            oninput="S.data.prevUnits=this.value"></label>
+        <span class="t" style="display:block;font-size:.78rem;font-weight:500;color:var(--ink-soft);margin-bottom:.4rem">Areas treated</span>
+        <div class="checks" style="margin-bottom:1rem">
+          ${["Forehead","Frown lines (the \u201911s\u2019)","Crow\u2019s feet","Brow lift","Bunny lines","Lips / lip flip","Masseter / jaw","Chin","Neck","Cheeks (filler)","Lips (filler)","Other"].map(a=>`
+            <label class="chk"><input type="checkbox" ${(S.data.prevAreas||[]).includes(a)?"checked":""}
+              onchange="toggleArr('prevAreas',this.nextElementSibling.textContent,this.checked)"><span>${a}</span></label>`).join("")}
+        </div>
+        <label class="f"><span class="t">Anything else about your prior treatment? (results, how long it lasted, etc.)</span>
+          <textarea oninput="S.data.prevNotes=this.value">${esc(S.data.prevNotes||"")}</textarea></label>
+      </div>
       ${YN("exfoliated","Have you exfoliated or applied any products to your face in the last 24 hours?","If yes, which products?")}
       ${YN("implants","Do you have any implants?","If yes, please explain:")}
       ${YN("adverse","Have you had any adverse reactions to a previous treatment?","If yes, please explain:")}
@@ -733,7 +756,14 @@ function buildPDF(){
   kv("Pregnant / trying", d.pregnant==="Yes" ? "Yes — "+(d.pregnant_detail||"") : "No");
 
   sec("Cosmetic Treatment & Surgery History");
-  kv("Recent Botox/filler", d.recentTx==="Yes" ? "Yes — "+(d.recentTx_detail||"") : "No");
+  kv("Prior Botox/filler", d.recentTx==="Yes" ? "Yes" : "No");
+  if(d.recentTx==="Yes"){
+    kv("Last treatment", d.prevDate);
+    kv("Product used", d.prevProduct);
+    kv("Units received", d.prevUnits);
+    kv("Areas treated", (d.prevAreas||[]).join(", "));
+    kv("Prior treatment notes", d.prevNotes);
+  }
   kv("Products last 24h", d.exfoliated==="Yes" ? "Yes — "+(d.exfoliated_detail||"") : "No");
   kv("Implants", d.implants==="Yes" ? "Yes — "+(d.implants_detail||"") : "No");
   kv("Prior adverse reactions", d.adverse==="Yes" ? "Yes — "+(d.adverse_detail||"") : "No");
