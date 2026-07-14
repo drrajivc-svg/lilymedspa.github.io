@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Treatment Consultation &amp; Consent — Lily Med Spa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{
+  --ink:#151210;
+  --ink-soft:#3a352f;
+  --gold:#b8935a;
+  --gold-deep:#96733f;
+  --gold-pale:#e9dcc4;
+  --cream:#faf7f1;
+  --paper:#ffffff;
+  --line:#e6ddce;
+  --error:#a3382e;
+  --ok:#3f6b4f;
+  --radius:10px;
+  --shadow:0 10px 30px rgba(21,18,16,.08);
+  font-size:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Poppins',system-ui,-apple-system,sans-serif;
+  font-weight:300;
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.6;
+  min-height:100vh;
+}
+/* ---------- gilded progress thread ---------- */
+.thread{
+  position:fixed;top:0;left:0;right:0;height:3px;
+  background:rgba(184,147,90,.18);z-index:60;
+}
+.thread b{
+  display:block;height:100%;width:0%;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold) 60%,#d9bd8a);
+  transition:width .5s cubic-bezier(.4,0,.2,1);
+}
+/* ---------- header ---------- */
+header{
+  background:var(--ink);
+  color:var(--cream);
+  padding:2.1rem 1.4rem 1.7rem;
+  text-align:center;
+  position:relative;
+}
+header::after{
+  content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+  width:64px;height:2px;background:var(--gold);
+}
+.wordmark{
+  font-family:'Lora',serif;font-weight:500;
+  font-size:1.5rem;letter-spacing:.42em;text-indent:.42em;
+  color:var(--gold-pale);
+}
+.wordmark small{
+  display:block;font-family:'Poppins',sans-serif;font-weight:300;
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;
+  color:rgba(233,220,196,.6);margin-top:.45rem;text-transform:uppercase;
+}
+/* ---------- shell ---------- */
+main{max-width:640px;margin:0 auto;padding:1.4rem 1.1rem 4rem}
+.step{display:none;animation:rise .45s ease both}
+.step.active{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .step{animation:none}
+  .thread b{transition:none}
+}
+.eyebrow{
+  font-size:.66rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold-deep);margin-bottom:.5rem;
+}
+h1,h2{font-family:'Lora',serif;font-weight:500;line-height:1.25}
+h1{font-size:1.7rem;margin-bottom:.7rem}
+h2{font-size:1.34rem;margin-bottom:.6rem}
+.lede{color:var(--ink-soft);font-size:.95rem;margin-bottom:1.4rem}
+.card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.3rem 1.2rem;margin-bottom:1rem;box-shadow:var(--shadow);
+}
+/* ---------- form controls ---------- */
+label.f{display:block;margin-bottom:1rem}
+label.f span.t{
+  display:block;font-size:.78rem;font-weight:500;letter-spacing:.04em;
+  color:var(--ink-soft);margin-bottom:.35rem;
+}
+.req::after{content:" *";color:var(--error)}
+input[type=text],input[type=tel],input[type=email],input[type=date],select,textarea{
+  width:100%;padding:.72rem .85rem;border:1px solid var(--line);
+  border-radius:8px;background:#fffdf9;font:inherit;font-size:1rem;color:var(--ink);
+  transition:border-color .2s, box-shadow .2s;
+}
+input:focus,select:focus,textarea:focus{
+  outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,147,90,.18);
+}
+textarea{min-height:78px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+@media(max-width:430px){.row{grid-template-columns:1fr}}
+/* pills (radio / checkbox groups) */
+.pills{display:flex;flex-wrap:wrap;gap:.5rem}
+.pill{position:relative}
+.pill input{position:absolute;opacity:0;inset:0}
+.pill span{
+  display:inline-block;padding:.5rem 1rem;border:1px solid var(--line);
+  border-radius:999px;font-size:.88rem;background:#fffdf9;cursor:pointer;
+  transition:all .18s;user-select:none;
+}
+.pill input:checked+span{
+  background:var(--ink);color:var(--gold-pale);border-color:var(--ink);
+}
+.pill input:focus-visible+span{box-shadow:0 0 0 3px rgba(184,147,90,.4)}
+/* condition / allergy checklist */
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:.45rem}
+@media(max-width:430px){.checks{grid-template-columns:1fr}}
+.chk{position:relative}
+.chk input{position:absolute;opacity:0;inset:0}
+.chk span{
+  display:flex;align-items:center;gap:.55rem;padding:.55rem .7rem;
+  border:1px solid var(--line);border-radius:8px;font-size:.86rem;
+  background:#fffdf9;cursor:pointer;transition:all .18s;
+}
+.chk span::before{
+  content:"";width:16px;height:16px;flex:0 0 16px;border:1.5px solid var(--gold);
+  border-radius:4px;transition:all .18s;
+}
+.chk input:checked+span{border-color:var(--gold);background:#f6efe2}
+.chk input:checked+span::before{
+  background:var(--gold);box-shadow:inset 0 0 0 3px #f6efe2;
+}
+.chk input:focus-visible+span{box-shadow:0 0 0 3px rgba(184,147,90,.4)}
+/* yes/no follow-up */
+.follow{display:none;margin-top:.6rem}
+.follow.show{display:block}
+/* ---------- treatment menu cards ---------- */
+.menu{display:grid;gap:.9rem}
+.mcard{position:relative}
+.mcard input{position:absolute;opacity:0;inset:0}
+.mcard span{
+  display:block;padding:1.25rem 1.2rem;background:var(--paper);
+  border:1px solid var(--line);border-radius:var(--radius);cursor:pointer;
+  transition:all .22s;box-shadow:var(--shadow);
+}
+.mcard b{
+  display:block;font-family:'Lora',serif;font-weight:500;font-size:1.15rem;
+  margin-bottom:.2rem;
+}
+.mcard i{font-style:normal;font-size:.84rem;color:var(--ink-soft)}
+.mcard input:checked+span{
+  border-color:var(--gold);background:linear-gradient(135deg,#fffdf9,#f6eeDD);
+  box-shadow:0 0 0 1px var(--gold), var(--shadow);
+}
+.mcard input:checked+span b{color:var(--gold-deep)}
+.mcard input:focus-visible+span{box-shadow:0 0 0 3px rgba(184,147,90,.4)}
+/* ---------- consent blocks ---------- */
+.consent-copy{font-size:.9rem;color:var(--ink-soft);margin-bottom:1rem}
+.consent-copy p{margin-bottom:.8rem}
+.risklist{
+  columns:2;column-gap:1.4rem;font-size:.87rem;color:var(--ink-soft);
+  margin:0 0 1rem 1.1rem;
+}
+@media(max-width:430px){.risklist{columns:1}}
+.risklist li{margin-bottom:.25rem;break-inside:avoid}
+.init{
+  display:flex;gap:.85rem;align-items:flex-start;
+  padding:.9rem 0;border-top:1px solid var(--line);
+}
+.init:first-of-type{border-top:none}
+.init p{flex:1;font-size:.86rem;color:var(--ink-soft)}
+.init input{
+  width:64px;flex:0 0 64px;text-align:center;text-transform:uppercase;
+  font-weight:500;letter-spacing:.1em;padding:.5rem .3rem;
+  border:1px solid var(--line);border-radius:8px;background:#fffdf9;font-size:.95rem;
+}
+.init input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,147,90,.18)}
+.init-label{
+  font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold-deep);font-weight:500;margin-bottom:.2rem;display:block;text-align:center;
+}
+/* ---------- signature ---------- */
+.sigwrap{position:relative;margin-bottom:.4rem}
+canvas.sig{
+  width:100%;height:170px;border:1px solid var(--line);border-radius:var(--radius);
+  background:#fffdf9;touch-action:none;display:block;
+}
+.sigline{
+  position:absolute;left:9%;right:9%;bottom:38px;height:1px;
+  background:var(--gold);opacity:.55;pointer-events:none;
+}
+.sigx{
+  position:absolute;left:9%;bottom:44px;font-family:'Lora',serif;
+  color:var(--gold-deep);opacity:.65;pointer-events:none;font-size:1rem;
+}
+.sig-clear{
+  background:none;border:none;color:var(--gold-deep);font:inherit;
+  font-size:.8rem;text-decoration:underline;cursor:pointer;padding:.2rem 0;
+}
+/* ---------- nav buttons ---------- */
+.navrow{display:flex;gap:.8rem;margin-top:1.4rem}
+button.btn{
+  flex:1;padding:.95rem 1rem;border-radius:999px;font:inherit;font-weight:500;
+  font-size:.95rem;letter-spacing:.05em;cursor:pointer;transition:all .2s;
+  border:1px solid var(--ink);
+}
+.btn-primary{background:var(--ink);color:var(--gold-pale)}
+.btn-primary:hover{background:#2a241e}
+.btn-ghost{background:transparent;color:var(--ink)}
+.btn-ghost:hover{background:rgba(21,18,16,.05)}
+.btn:focus-visible{outline:3px solid rgba(184,147,90,.5);outline-offset:2px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+/* ---------- misc ---------- */
+.errmsg{
+  display:none;background:#f8e9e7;border:1px solid #e4c3bf;color:var(--error);
+  font-size:.85rem;border-radius:8px;padding:.7rem .9rem;margin-top:1rem;
+}
+.errmsg.show{display:block}
+.stepcount{
+  font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold-deep);margin-bottom:1.1rem;font-weight:500;
+}
+.done-crest{
+  width:74px;height:74px;margin:0 auto 1.2rem;border:1.5px solid var(--gold);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'Lora',serif;font-size:1.6rem;color:var(--gold-deep);
+}
+.fineprint{font-size:.74rem;color:#8a8177;margin-top:1rem;text-align:center}
+.policy-copy{font-size:.88rem;color:var(--ink-soft)}
+.policy-copy p{margin-bottom:.75rem}
+.policy-copy strong{font-weight:500;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="thread" aria-hidden="true"><b id="threadFill"></b></div>
+<header>
+  <div class="wordmark">LILY MED SPA
+    <small>Physician-Owned Aesthetics &middot; Fullerton, CA</small>
+  </div>
+</header>
+<main id="app"></main>
+<script>
+/* =========================================================
+   Lily Med Spa — Consultation & Consent
+   Single-file, no backend. All state lives in memory and is
+   compiled into a branded PDF at completion.
+   ========================================================= */
+const S = {
+  // sensible default
+  
+  treatment: null,          // 'botox' | 'filler' | 'both'
+  data: { state: 'CA' },                 // field values
+  sig: null,                // dataURL of signature
+  photoSig: null            // dataURL of photo-release choice sig (initials typed)
+};
+
+const CONDITIONS = ["Alopecia","Blood thinners","Prior fillers / Botox","Hepatitis","HIV/AIDS",
+"Eczema / rashes","Bleeding disorders","Skin cancer","Chemotherapy","Sunburn",
+"Use of alpha hydroxy acid","Use of Accutane, Renova or Retin-A","Varicose veins",
+"Ultra-sensitive skin","Recent chemical peel","Recent scar tissue","Recent surgery",
+"Recent permanent makeup","Seizures","Pregnancy"];
+
+const ALLERGENS = ["Aspirin","Neurotoxin","Lidocaine (anesthetic)","Eggs","Hydrocortisone",
+"Collagen","Dermal fillers","Other"];
+
+const RISKS = ["Allergic reaction","Infection","Bruising","Eye dryness or tearing","Swelling",
+"Headaches","Anaphylaxis","Scarring of the skin","Increased sensitivity","Blurred vision","Skin irritation"];
+
+const BOTOX_STATEMENTS = [
+"During the course of the treatment, despite all precautionary measures taken by the Licensed Medical Provider, I recognize that there is a possibility of injury. I will not hold the Provider responsible for issues that may arise as a result of undergoing the procedure.",
+"I understand that there are inherent risks associated with botulinum toxin / Botox. If I experience any form of adverse reaction, I will promptly seek medical attention and inform my Provider.",
+"It is my responsibility to communicate any concerns I may have to my Licensed Medical Provider before the procedure.",
+"I understand and agree to follow the aftercare instructions provided by my Licensed Medical Provider. I am aware that not adhering to the aftercare instructions may impact the achievement of the desired results.",
+"I acknowledge that the product will be injected into the muscles of my face as part of the botulinum / Botox process. The Licensed Medical Provider will not be held liable for damages, especially if I fail to follow aftercare instructions.",
+"I have disclosed all pertinent medical history, and I commit to informing my Provider of any changes that may occur in the future."];
+
+const FILLER_STATEMENTS = BOTOX_STATEMENTS.map(s =>
+  s.replace("botulinum toxin / Botox","dermal fillers")
+   .replace("muscles of my face as part of the botulinum / Botox process","subcutaneous areas of my face as part of the dermal filler process"));
+
+const BOTOX_INTRO = `"Botox" is one of the most familiar brands of botulinum toxin injections. Botulinum toxins are neurotoxins that impact nerves, leading to muscle weakening. Practitioners administer small quantities into specific areas to reduce wrinkles and manage a broad spectrum of other conditions. Botox works by blocking nerve signals to muscles, resulting in the temporary inability of the injected muscles to contract — typically lasting about three to four months. In rare cases, botulinum toxin may extend beyond the intended treatment area, resulting in botulism-like signs and symptoms: breathing difficulties, trouble swallowing, muscle weakness, or slurred speech. If you experience any of these symptoms following treatment, seek immediate medical attention.`;
+
+const FILLER_INTRO = `A dermal filler is a non-surgical cosmetic treatment used to enhance and restore the youthful appearance of the skin. It involves injecting a substance — most commonly hyaluronic acid, and in some products collagen, calcium hydroxylapatite, poly-L-lactic acid, or PMMA — into specific areas of the face to smooth wrinkles, add volume, and improve overall texture. Effects are generally temporary and may last from several months to over a year depending on the product used. Some fillers include lidocaine, a local anesthetic, for comfort during injection.`;
+
+/* ---------------- step registry ---------------- */
+const steps = ["welcome","treatment","info","medical","allergies","history",
+               "consentBotox","consentFiller","photo","policy","sign","done"];
+
+function activeSteps(){
+  return steps.filter(s=>{
+    if(s==="consentBotox")  return S.treatment==="botox"||S.treatment==="both";
+    if(s==="consentFiller") return S.treatment==="filler"||S.treatment==="both";
+    return true;
+  });
+}
+let cur = 0;
+
+/* ---------------- renderers ---------------- */
+const R = {};
+
+R.welcome = () => `
+  <div class="step active">
+    <p class="eyebrow">Before your visit</p>
+    <h1>Consultation &amp; consent</h1>
+    <p class="lede">Welcome. This secure form takes about 5&ndash;7 minutes and covers your health history and treatment consent, so your appointment time is spent on you &mdash; not paperwork. Your answers are reviewed personally by Dr.&nbsp;Rajiv Choudhary, MD, Medical Director.</p>
+    <div class="card">
+      <p style="font-size:.88rem;color:var(--ink-soft)">You&rsquo;ll be asked about:</p>
+      <ul style="font-size:.88rem;color:var(--ink-soft);margin:.5rem 0 0 1.2rem;line-height:1.9">
+        <li>Contact details &amp; medical history</li>
+        <li>Allergies, medications &amp; prior treatments</li>
+        <li>Informed consent for your treatment</li>
+        <li>Your signature, drawn right on this screen</li>
+      </ul>
+    </div>
+    <div class="navrow"><button class="btn btn-primary" onclick="next()">Begin</button></div>
+    <p class="fineprint">Lily Medical Care, Inc. &middot; 140 E Commonwealth Ave, Fullerton, CA 92832<br>951&#8209;675&#8209;8957 &middot; lilymedicalcareinc@gmail.com</p>
+  </div>`;
+
+R.treatment = () => `
+  <div class="step active">
+    <p class="stepcount">Step 1 &middot; Treatment</p>
+    <h2>What are we seeing you for?</h2>
+    <p class="lede">Your consent paperwork adapts to the treatment you choose.</p>
+    <div class="menu" role="radiogroup" aria-label="Treatment selection">
+      ${[["botox","Botox / Neurotoxin","Wrinkle relaxing &middot; brow, forehead, crow&rsquo;s feet &amp; more"],
+         ["filler","Dermal Filler","Volume &amp; contour &middot; lips, cheeks, folds"],
+         ["both","Botox + Dermal Filler","Combined treatment plan"]]
+        .map(([v,t,d])=>`
+        <label class="mcard">
+          <input type="radio" name="treatment" value="${v}" ${S.treatment===v?"checked":""}
+            onchange="S.treatment='${v}'">
+          <span><b>${t}</b><i>${d}</i></span>
+        </label>`).join("")}
+    </div>
+    <div class="errmsg" id="err">Please choose a treatment to continue.</div>
+    <div class="navrow">
+      <button class="btn btn-ghost" onclick="back()">Back</button>
+      <button class="btn btn-primary" onclick="if(!S.treatment){showErr()}else next()">Continue</button>
+    </div>
+  </div>`;
+
+const F = (id,label,req,type="text",attrs="") =>
+  `<label class="f"><span class="t ${req?"req":""}">${label}</span>
+   <input type="${type}" id="${id}" value="${esc(S.data[id]||"")}" ${attrs}
+     oninput="S.data['${id}']=this.value"></label>`;
+
+R.info = () => `
+  <div class="step active">
+    <p class="stepcount">Step 2 &middot; Your details</p>
+    <h2>Client information</h2>
+    <div class="card">
+      ${F("name","Full legal name",1)}
+      <div class="row">
+        ${F("dob","Date of birth",1,"date")}
+        ${F("phone","Phone",1,"tel","autocomplete=tel")}
+      </div>
+      ${F("email","Email",1,"email","autocomplete=email")}
+      ${F("address","Street address",1,"text","autocomplete=street-address")}
+      <div class="row">
+        ${F("city","City",1)}
+        ${F("state","State",1)}
+      </div>
+      <div class="row">
+        ${F("zip","ZIP",1,"text","inputmode=numeric")}
+        <label class="f"><span class="t">Gender</span>
+          <select id="gender" onchange="S.data.gender=this.value">
+            ${["","Female","Male","Non-binary","Prefer not to say"].map(g=>
+              `<option ${S.data.gender===g?"selected":""}>${g}</option>`).join("")}
+          </select></label>
+      </div>
+      ${F("emergency","Emergency contact (name & phone)",1)}
+      ${F("heard","How did you hear about us?",0)}
+      <label class="f"><span class="t">Join our email list for news &amp; exclusive offers?</span>
+        <div class="pills">
+          ${["Yes","No"].map(v=>`
+            <label class="pill"><input type="radio" name="optin" value="${v}"
+              ${S.data.optin===v?"checked":""} onchange="S.data.optin='${v}'"><span>${v}</span></label>`).join("")}
+        </div></label>
+    </div>
+    <div class="errmsg" id="err">Please complete the required fields marked with *.</div>
+    <div class="navrow">
+      <button class="btn btn-ghost" onclick="back()">Back</button>
+      <button class="btn btn-primary" onclick="validate(['name','dob','phone','email','address','city','state','zip','emergency'])">Continue</button>
+    </div>
+  </div>`;
+
+R.medical = () => `
+  <div class="step active">
+    <p class="stepcount">Step 3 &middot; Medical history</p>
+    <h2>Do any of these apply to you?</h2>
+    <p class="lede">Mark any conditions you currently have. Leave blank if none apply.</p>
+    <div class="card">
+      <div class="checks">
+        ${CONDITIONS.map((c,i)=>`
+          <label class="chk"><input type="checkbox" ${ (S.data.conditions||[]).includes(c)?"checked":"" }
+            onchange="toggleArr('conditions','${esc(c)}',this.checked)"><span>${c}</span></label>`).join("")}
+      </div>
+      <label class="f" style="margin-top:1rem"><span class="t">Any other condition?</span>
+        <input type="text" id="otherCond" value="${esc(S.data.otherCond||"")}"
+          oninput="S.data.otherCond=this.value"></label>
+      <label class="f"><span class="t">If you marked any boxes, please give further details</span>
+        <textarea id="condDetails" oninput="S.data.condDetails=this.value">${esc(S.data.condDetails||"")}</textarea></label>
+    </div>
+    <div class="navrow">
+      <button class="btn btn-ghost" onclick="back()">Back</button>
+      <button class="btn btn-primary" onclick="next()">Continue</button>
+    </div>
+  </div>`;
+
+/* yes/no question with conditional detail box */
+const YN = (id,q,detailLabel) => `
+  <div style="padding:.8rem 0;border-top:1px solid var(--line)">
+    <p style="font-size:.88rem;margin-bottom:.5rem">${q}</p>
+    <div class="pills">
+      ${["No","Yes"].map(v=>`
+        <label class="pill"><input type="radio" name="${id}" value="${v}"
+          ${S.data[id]===v?"checked":""}
+          onchange="S.data['${id}']='${v}';document.getElementById('${id}_d').classList.toggle('show',this.value==='Yes')">
+        <span>${v}</span></label>`).join("")}
+    </div>
+    <div class="follow ${S.data[id]==="Yes"?"show":""}" id="${id}_d">
+      <label class="f" style="margin:.6rem 0 0"><span class="t">${detailLabel}</span>
+        <textarea oninput="S.data['${id}_detail']=this.value">${esc(S.data[id+"_detail"]||"")}</textarea></label>
+    </div>
+  </div>`;
+
+R.allergies = () => `
+  <div class="step active">
+    <p class="stepcount">Step 4 &middot; Allergies &amp; medications</p>
+    <h2>Allergies &amp; medications</h2>
+    <div class="card">
+      <p style="font-size:.88rem;margin-bottom:.6rem">Have you had an allergic reaction to any of the following?</p>
+      <div class="checks">
+        ${ALLERGENS.map(a=>`
+          <label class="chk"><input type="checkbox" ${(S.data.allergens||[]).includes(a)?"checked":""}
+            onchange="toggleArr('allergens','${esc(a)}',this.checked)"><span>${a}</span></label>`).join("")}
+      </div>
+      ${YN("otherAllergy","Do you have any other allergies?","Please list all:")}
+      <label class="f" style="margin-top:.9rem"><span class="t">List all medications you take, including vitamins, herbal supplements, aspirin, hormones and topicals</span>
+        <textarea oninput="S.data.meds=this.value">${esc(S.data.meds||"")}</textarea></label>
+      ${YN("bloodThinner","Are you currently taking blood-thinning medication?","If yes, please explain:")}
+      ${YN("pregnant","Are you currently pregnant or trying to get pregnant?","If yes, please explain:")}
+    </div>
+    <div class="navrow">
+      <button class="btn btn-ghost" onclick="back()">Back</button>
+      <button class="btn btn-primary" onclick="next()">Continue</button>
+    </div>
+  </div>`;
+
+R.history = () => `
+  <div class="step active">
+    <p class="stepcount">Step 5 &middot; Treatment history</p>
+    <h2>Cosmetic treatment &amp; surgery history</h2>
+    <div class="card">
+      ${YN("recentTx","Have you had any Botox / dermal filler treatments recently?","If yes, please state when & explain:")}
+      ${YN("exfoliated","Have you exfoliated or applied any products to your face in the last 24 hours?","If yes, which products?")}
+      ${YN("implants","Do you have any implants?","If yes, please explain:")}
+      ${YN("adverse","Have you had any adverse reactions to a previous treatment?","If yes, please explain:")}
+    </div>
+    <div class="navrow">
+      <button class="btn btn-ghost" onclick="back()">Back</button>
+      <button class="btn btn-primary" onclick="next()">Continue</button>
+    </div>
+  </div>`;
+
+/* ------- consent step factory (Botox / Filler) ------- */
+function consentStep(kind){
+  const isB = kind==="botox";
+  const statements = isB ? BOTOX_STATEMENTS : FILLER_STATEMENTS;
+  const key = isB ? "initB" : "initF";
+  return `
+  <div class="step active">
+    <p class="stepcount">Informed consent</p>
+    <h2>${isB?"Botox / Neurotoxin":"Dermal Filler"} consent</h2>
+    <div class="card consent-copy">
+      <p>${isB?BOTOX_INTRO:FILLER_INTRO}</p>
+      <p style="font-family:'Lora',serif;color:var(--ink);font-size:1rem;margin-bottom:.4rem">Risks &amp; complications</p>
+      <p>Every treatment carries inherent risks. Providing a complete medical history helps reduce them, but unforeseen complications may still arise. Potential risks include:</p>
+      <ul class="risklist">${RISKS.map(r=>`<li>${r}</li>`).join("")}</ul>
+    </div>
+    <div class="card">
+      <span class="init-label" style="text-align:left">Initial each statement</span>
+      ${statements.map((s,i)=>`
+        <div class="init">
+          <p>${s}</p>
+          <div><span class="init-label">Initials</span>
+          <input maxlength="4" value="${esc((S.data[key]||[])[i]||"")}"
+            oninput="(S.data['${key}']=S.data['${key}']||[])[${i}]=this.value.toUpperCase()"></div>
+        </div>`).join("")}
+    </div>
+    <div class="errmsg" id="err">Please initial every statement to continue.</div>
+    <div class="navrow">
+      <button class="btn btn-ghost" onclick="back()">Back</button>
+      <button class="btn btn-primary" onclick="checkInitials('${key}',${statements.length})">I understand &mdash; continue</button>
+    </div>
+  </div>`;
+}
+R.consentBotox  = () => consentStep("botox");
+R.consentFiller = () => consentStep("filler");
+
+R.photo = () => `
+  <div class="step active">
+    <p class="stepcount">Photo &amp; video release</p>
+    <h2>Photo &amp; video release</h2>
+    <div class="card policy-copy">
+      <p>Before-and-after photographs are part of your clinical record. Separately, you may choose whether Lily Medical Care, Inc. may use photographs, videos, or audio recordings of you for lawful promotional purposes &mdash; including websites, social media, brochures, advertisements, and other print or digital media &mdash; without payment or other consideration, in all languages, media, and formats, now known or later developed. Materials created remain the property of Lily Medical Care, Inc. You release Lily Medical Care, Inc. from liability or claims arising from such use.</p>
+      <p><strong>Your choice does not affect your treatment in any way.</strong></p>
+    </div>
+    <div class="menu" role="radiogroup" aria-label="Photo release choice">
+      <label class="mcard"><input type="radio" name="photorel" value="grant" ${S.data.photorel==="grant"?"checked":""}
+        onchange="S.data.photorel='grant'">
+        <span><b>I grant permission</b><i>My photos/videos may be used for promotion</i></span></label>
+      <label class="mcard"><input type="radio" name="photorel" value="decline" ${S.data.photorel==="decline"?"checked":""}
+        onchange="S.data.photorel='decline'">
+        <span><b>I decline</b><i>Clinical-record photos only &mdash; no promotional use</i></span></label>
+    </div>
+    <div class="errmsg" id="err">Please choose an option to continue.</div>
+    <div class="navrow">
+      <button class="btn btn-ghost" onclick="back()">Back</button>
+      <button class="btn btn-primary" onclick="if(!S.data.photorel){showErr()}else next()">Continue</button>
+    </div>
+  </div>`;
+
+R.policy = () => `
+  <div class="step active">
+    <p class="stepcount">Appointments</p>
+    <h2>Cancellation policy</h2>
+    <div class="card policy-copy">
+      <p>Appointments are in high demand. Canceling in advance lets us offer your time to another client seeking timely care.</p>
+      <p>A deposit is required when booking &mdash; <strong>$50 for Botox</strong> and <strong>$150 for dermal filler</strong> &mdash; applied as credit toward your scheduled treatment.</p>
+      <p>Please give at least <strong>48 hours&rsquo; notice</strong> to cancel or reschedule; your deposit will be refunded or applied to a future visit. With less than 48 hours&rsquo; notice, the deposit is forfeited. Arriving more than <strong>45 minutes late</strong> is treated as a no-show and the cancellation fee applies.</p>
+    </div>
+    <label class="chk" style="display:block">
+      <input type="checkbox" ${S.data.policyAgree?"checked":""} onchange="S.data.policyAgree=this.checked">
+      <span>I have read and agree to the appointment &amp; cancellation policy, and agree to pay the cancellation fee for a missed appointment.</span>
+    </label>
+    <div class="errmsg" id="err">Please agree to the policy to continue.</div>
+    <div class="navrow">
+      <button class="btn btn-ghost" onclick="back()">Back</button>
+      <button class="btn btn-primary" onclick="if(!S.data.policyAgree){showErr()}else next()">Continue</button>
+    </div>
+  </div>`;
+
+R.sign = () => `
+  <div class="step active">
+    <p class="stepcount">Final step</p>
+    <h2>Review &amp; sign</h2>
+    <div class="card policy-copy">
+      <p>By signing below, I acknowledge that I have completed this form truthfully and to the best of my knowledge, and that I have read and understand all information in this informed consent agreement. I understand this agreement is legal and binding and remains in effect for this procedure and all future follow-ups conducted by <strong>Lily Medical Care, Inc.</strong> and its associates. I fully understand the risks and side effects associated with the treatment, freely assume these risks, and release Lily Medical Care, Inc. and its associates of all liability.</p>
+    </div>
+    <div class="card">
+      ${F("printedName","Full name (printed)",1)}
+      <span class="t req" style="display:block;font-size:.78rem;font-weight:500;color:var(--ink-soft);margin-bottom:.35rem">Signature &mdash; sign with your finger</span>
+      <div class="sigwrap">
+        <canvas class="sig" id="sigpad"></canvas>
+        <span class="sigx">&#10007;</span>
+        <div class="sigline"></div>
+      </div>
+      <button class="sig-clear" onclick="clearSig()">Clear signature</button>
+      <p style="font-size:.8rem;color:var(--ink-soft);margin-top:.8rem">Date: <strong id="todayStr"></strong></p>
+    </div>
+    <div class="errmsg" id="err">Please print your name and sign above.</div>
+    <div class="navrow">
+      <button class="btn btn-ghost" onclick="back()">Back</button>
+      <button class="btn btn-primary" onclick="finish()">Agree &amp; sign</button>
+    </div>
+  </div>`;
+
+R.done = () => `
+  <div class="step active" style="text-align:center;padding-top:1.5rem">
+    <div class="done-crest">L</div>
+    <h2>Thank you, ${esc((S.data.name||"").split(" ")[0]||"")}</h2>
+    <p class="lede" style="max-width:36ch;margin:0 auto 1.2rem">Your consultation form and signed consent are complete. Send it to us now so it&rsquo;s in your chart before you arrive.</p>
+    <label class="chk" style="display:block;text-align:left;max-width:380px;margin:0 auto 1rem">
+      <input type="checkbox" ${S.data.emailConsent?"checked":""} onchange="S.data.emailConsent=this.checked">
+      <span>I choose to send my completed form to Lily Med Spa by email or text from my own device, and I understand that standard email and text may not be fully secure.</span>
+    </label>
+    <div class="errmsg" id="err" style="max-width:380px;margin:0 auto 1rem">Please check the box above to send, or download your copy instead.</div>
+    <div style="display:flex;flex-direction:column;gap:.7rem;max-width:340px;margin:0 auto">
+      <button class="btn btn-primary" onclick="sharePDF()">Send to Lily Med Spa</button>
+      <button class="btn btn-ghost" onclick="makePDF('download')">Download my copy (PDF)</button>
+    </div>
+    <p class="fineprint" id="shareHint">If sending doesn&rsquo;t open automatically, download the PDF and attach it to an email to <strong>lilymedicalcareinc@gmail.com</strong>.</p>
+    <p class="fineprint">Lily Med Spa &middot; 140 E Commonwealth Ave, Fullerton, CA 92832<br>Questions? Call or text 951&#8209;675&#8209;8957</p>
+  </div>`;
+
+/* ---------------- engine ---------------- */
+function esc(s){return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}
+function render(){
+  const list = activeSteps();
+  if(cur >= list.length) cur = list.length-1;
+  const name = list[cur];
+  document.getElementById("app").innerHTML = R[name]();
+  document.getElementById("threadFill").style.width =
+    Math.round((cur/(list.length-1))*100) + "%";
+  window.scrollTo({top:0,behavior:"instant"});
+  if(name==="sign") initSig();
+}
+function next(){ cur++; render(); }
+function back(){ cur=Math.max(0,cur-1); render(); }
+function showErr(){ const e=document.getElementById("err"); if(e) e.classList.add("show"); }
+function toggleArr(key,val,on){
+  S.data[key]=S.data[key]||[];
+  const i=S.data[key].indexOf(val);
+  if(on&&i<0)S.data[key].push(val);
+  if(!on&&i>=0)S.data[key].splice(i,1);
+}
+function validate(ids){
+  const bad = ids.filter(id=>!(S.data[id]||"").trim());
+  if(bad.length){ showErr(); ids.forEach(id=>{const el=document.getElementById(id);
+    if(el) el.style.borderColor = (S.data[id]||"").trim() ? "" : "var(--error)";}); return; }
+  next();
+}
+function checkInitials(key,n){
+  const arr = S.data[key]||[];
+  for(let i=0;i<n;i++){ if(!(arr[i]||"").trim()){ showErr(); return; } }
+  next();
+}
+
+/* ---------------- signature pad ---------------- */
+let sigCtx=null, sigDrawn=false;
+function initSig(){
+  const c=document.getElementById("sigpad");
+  const dpr=window.devicePixelRatio||1;
+  const rect=c.getBoundingClientRect();
+  c.width=rect.width*dpr; c.height=170*dpr;
+  sigCtx=c.getContext("2d");
+  sigCtx.scale(dpr,dpr);
+  sigCtx.lineWidth=2; sigCtx.lineCap="round"; sigCtx.lineJoin="round";
+  sigCtx.strokeStyle="#151210";
+  sigDrawn=false;
+  let drawing=false;
+  const pos=e=>{const r=c.getBoundingClientRect();
+    return {x:e.clientX-r.left, y:e.clientY-r.top};};
+  c.addEventListener("pointerdown",e=>{drawing=true;sigDrawn=true;
+    const p=pos(e);sigCtx.beginPath();sigCtx.moveTo(p.x,p.y);e.preventDefault();});
+  c.addEventListener("pointermove",e=>{if(!drawing)return;
+    const p=pos(e);sigCtx.lineTo(p.x,p.y);sigCtx.stroke();e.preventDefault();});
+  ["pointerup","pointerleave","pointercancel"].forEach(ev=>
+    c.addEventListener(ev,()=>{drawing=false;}));
+  document.getElementById("todayStr").textContent =
+    new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
+}
+function clearSig(){
+  const c=document.getElementById("sigpad");
+  sigCtx.clearRect(0,0,c.width,c.height); sigDrawn=false;
+}
+function finish(){
+  if(!(S.data.printedName||"").trim() || !sigDrawn){ showErr(); return; }
+  S.sig = document.getElementById("sigpad").toDataURL("image/png");
+  S.data.signedDate = new Date().toLocaleDateString("en-US",
+    {year:"numeric",month:"long",day:"numeric"});
+  next();
+}
+
+/* ---------------- PDF ---------------- */
+function buildPDF(){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({unit:"pt",format:"letter"});
+  const W=612, M=54; let y=0;
+  const gold=[150,115,63], ink=[21,18,16], soft=[90,84,76];
+
+  function header(title){
+    doc.setFillColor(21,18,16); doc.rect(0,0,W,86,"F");
+    doc.setTextColor(233,220,196);
+    doc.setFont("times","normal"); doc.setFontSize(19);
+    doc.text("L I L Y   M E D   S P A", W/2, 40, {align:"center"});
+    doc.setFont("helvetica","normal"); doc.setFontSize(7.5);
+    doc.setTextColor(190,175,150);
+    doc.text("PHYSICIAN-OWNED AESTHETICS  ·  140 E COMMONWEALTH AVE, FULLERTON, CA 92832  ·  951-675-8957",
+      W/2, 58, {align:"center"});
+    doc.setDrawColor(...gold); doc.setLineWidth(1.2);
+    doc.line(W/2-32, 70, W/2+32, 70);
+    doc.setTextColor(...ink); doc.setFont("times","bold"); doc.setFontSize(15);
+    doc.text(title, M, 122);
+    doc.setDrawColor(...gold); doc.setLineWidth(.6);
+    doc.line(M, 130, W-M, 130);
+    y=150;
+  }
+  function ensure(h){ if(y+h > 742){ doc.addPage(); y=64; } }
+  function kv(k,v){
+    ensure(18);
+    doc.setFont("helvetica","bold"); doc.setFontSize(8.5); doc.setTextColor(...gold);
+    doc.text(k.toUpperCase(), M, y);
+    doc.setFont("helvetica","normal"); doc.setFontSize(10); doc.setTextColor(...ink);
+    const lines = doc.splitTextToSize(String(v||"—"), W-M*2-150);
+    doc.text(lines, M+150, y);
+    y += Math.max(16, lines.length*12+4);
+  }
+  function sec(t){
+    ensure(34); y+=10;
+    doc.setFont("times","bold"); doc.setFontSize(12.5); doc.setTextColor(...ink);
+    doc.text(t, M, y);
+    doc.setDrawColor(230,221,206); doc.setLineWidth(.5);
+    doc.line(M, y+6, W-M, y+6); y+=22;
+  }
+  function para(t,size=8.5){
+    doc.setFont("helvetica","normal"); doc.setFontSize(size); doc.setTextColor(...soft);
+    const lines=doc.splitTextToSize(t, W-M*2);
+    ensure(lines.length*10.5+8);
+    doc.text(lines, M, y); y+=lines.length*10.5+8;
+  }
+  const d=S.data;
+  const txName = {botox:"Botox / Neurotoxin", filler:"Dermal Filler", both:"Botox + Dermal Filler"}[S.treatment];
+
+  header("Consultation Form & Informed Consent");
+  kv("Treatment", txName);
+  kv("Date signed", d.signedDate);
+  sec("Client Information");
+  kv("Name", d.name); kv("Date of birth", d.dob); kv("Phone", d.phone);
+  kv("Email", d.email);
+  kv("Address", `${d.address||""}, ${d.city||""}, ${d.state||""} ${d.zip||""}`);
+  kv("Gender", d.gender); kv("Emergency contact", d.emergency);
+  kv("Heard about us", d.heard); kv("Email list opt-in", d.optin);
+
+  sec("Medical History");
+  kv("Conditions", (d.conditions||[]).join(", ")||"None reported");
+  kv("Other condition", d.otherCond);
+  kv("Details", d.condDetails);
+
+  sec("Allergies & Medications");
+  kv("Allergic reactions to", (d.allergens||[]).join(", ")||"None reported");
+  kv("Other allergies", d.otherAllergy==="Yes" ? d.otherAllergy_detail : "No");
+  kv("Medications", d.meds);
+  kv("Blood thinners", d.bloodThinner==="Yes" ? "Yes — "+(d.bloodThinner_detail||"") : "No");
+  kv("Pregnant / trying", d.pregnant==="Yes" ? "Yes — "+(d.pregnant_detail||"") : "No");
+
+  sec("Cosmetic Treatment & Surgery History");
+  kv("Recent Botox/filler", d.recentTx==="Yes" ? "Yes — "+(d.recentTx_detail||"") : "No");
+  kv("Products last 24h", d.exfoliated==="Yes" ? "Yes — "+(d.exfoliated_detail||"") : "No");
+  kv("Implants", d.implants==="Yes" ? "Yes — "+(d.implants_detail||"") : "No");
+  kv("Prior adverse reactions", d.adverse==="Yes" ? "Yes — "+(d.adverse_detail||"") : "No");
+
+  function consentBlock(title,intro,statements,initKey){
+    doc.addPage(); y=64;
+    doc.setFont("times","bold"); doc.setFontSize(14); doc.setTextColor(...ink);
+    doc.text(title, M, y); y+=10;
+    doc.setDrawColor(...gold); doc.line(M,y,W-M,y); y+=16;
+    para(intro);
+    doc.setFont("times","bold"); doc.setFontSize(11); doc.setTextColor(...ink);
+    ensure(20); doc.text("Risks & complications", M, y); y+=14;
+    para("Every treatment carries inherent risks: " + RISKS.join(", ") +
+      ". In rare cases botulinum toxin may spread beyond the treatment area causing botulism-like symptoms (breathing difficulty, trouble swallowing, muscle weakness, slurred speech) — seek immediate medical attention if these occur.");
+    doc.setFont("times","bold"); doc.setFontSize(11); doc.setTextColor(...ink);
+    ensure(20); doc.text("Acknowledgments (initialed)", M, y); y+=14;
+    statements.forEach((s,i)=>{
+      const init=(d[initKey]||[])[i]||"";
+      const lines=doc.splitTextToSize(s, W-M*2-60);
+      ensure(lines.length*10+14);
+      doc.setFont("helvetica","bold"); doc.setFontSize(9); doc.setTextColor(...gold);
+      doc.text(init, M, y);
+      doc.setFont("helvetica","normal"); doc.setFontSize(8.5); doc.setTextColor(...soft);
+      doc.text(lines, M+55, y);
+      y+=lines.length*10+10;
+    });
+  }
+  if(S.treatment==="botox"||S.treatment==="both")
+    consentBlock("Botox / Neurotoxin — Informed Consent", BOTOX_INTRO, BOTOX_STATEMENTS, "initB");
+  if(S.treatment==="filler"||S.treatment==="both")
+    consentBlock("Dermal Filler — Informed Consent", FILLER_INTRO, FILLER_STATEMENTS, "initF");
+
+  sec("Photo & Video Release");
+  para(d.photorel==="grant"
+    ? "Client GRANTS Lily Medical Care, Inc. permission to use photographs, videos, and recordings for lawful promotional purposes across print and digital media, without compensation, releasing Lily Medical Care, Inc. from related claims."
+    : "Client DECLINES promotional use. Photographs remain part of the clinical record only.");
+
+  sec("Cancellation Policy");
+  para("Deposits: $50 Botox / $150 dermal filler, applied as treatment credit. 48 hours' notice required to cancel or reschedule for deposit refund/credit; later notice forfeits the deposit. Arrival more than 45 minutes late is a no-show and the cancellation fee applies. Client agreed: " + (d.policyAgree?"YES":"NO"));
+
+  sec("Agreement & Signature");
+  para("I acknowledge that I have completed this form truthfully and to the best of my knowledge, have read and understand all information in this informed consent agreement, understand it is legal and binding for this procedure and all future follow-ups conducted by Lily Medical Care, Inc. and its associates, fully understand the risks and side effects associated with the treatment, freely assume these risks, and release Lily Medical Care, Inc. and its associates of all liability.",9);
+  ensure(120);
+  if(S.sig){ doc.addImage(S.sig,"PNG",M,y,180,60); }
+  doc.setDrawColor(...ink); doc.setLineWidth(.7);
+  doc.line(M,y+62,M+220,y+62);
+  doc.setFontSize(8); doc.setTextColor(...soft);
+  doc.text("Client signature", M, y+74);
+  doc.setFontSize(10); doc.setTextColor(...ink);
+  doc.text(d.printedName||"", M+280, y+56);
+  doc.line(M+280,y+62,M+500,y+62);
+  doc.setFontSize(8); doc.setTextColor(...soft);
+  doc.text("Printed name", M+280, y+74);
+  y+=100; ensure(70);
+  doc.setFontSize(10); doc.setTextColor(...ink);
+  doc.setFont("times","italic");
+  doc.text("Rajiv Choudhary, MD", M, y+18);
+  doc.setFont("helvetica","normal");
+  doc.line(M,y+24,M+220,y+24);
+  doc.setFontSize(8); doc.setTextColor(...soft);
+  doc.text("Medical Director — Rajiv Choudhary, MD", M, y+36);
+  doc.text("Date: "+d.signedDate, M+280, y+18);
+
+  return doc;
+}
+function pdfName(){
+  return "LilyMedSpa-Consent-"+(S.data.name||"client").replace(/\s+/g,"-")+".pdf";
+}
+function makePDF(){
+  buildPDF().save(pdfName());
+}
+async function sharePDF(){
+  if(!S.data.emailConsent){ showErr(); return; }
+  const blob = buildPDF().output("blob");
+  const file = new File([blob], pdfName(), {type:"application/pdf"});
+  if(navigator.canShare && navigator.canShare({files:[file]})){
+    try{
+      await navigator.share({
+        files:[file],
+        title:"Lily Med Spa — Signed Consent",
+        text:"Completed consultation & consent form for Lily Med Spa. Please send to lilymedicalcareinc@gmail.com"
+      });
+      return;
+    }catch(e){ /* user cancelled or share failed — fall through */ }
+  }
+  // Fallback: download + open a pre-addressed email for manual attach
+  buildPDF().save(pdfName());
+  setTimeout(()=>{
+    location.href = "mailto:lilymedicalcareinc@gmail.com"
+      + "?subject=" + encodeURIComponent("Signed consent form — " + (S.data.name||""))
+      + "&body=" + encodeURIComponent("Hi, my completed consent form is attached. (Please attach the PDF that just downloaded.)");
+  }, 600);
+}
+
+render();
+</script>
+</body>
+</html>
