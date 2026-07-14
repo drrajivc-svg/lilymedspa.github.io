@@ -256,7 +256,7 @@ const S = {
   // sensible default
   
   treatment: null,          // 'botox' | 'filler' | 'both'
-  data: { state: 'CA' },                 // field values
+  data: {},                 // field values
   sig: null,                // dataURL of signature
   photoSig: null            // dataURL of photo-release choice sig (initials typed)
 };
@@ -362,20 +362,14 @@ R.info = () => `
         ${F("phone","Phone",1,"tel","autocomplete=tel")}
       </div>
       ${F("email","Email",1,"email","autocomplete=email")}
-      ${F("address","Street address",1,"text","autocomplete=street-address")}
       <div class="row">
-        ${F("city","City",1)}
-        ${F("state","State",1)}
-      </div>
-      <div class="row">
-        ${F("zip","ZIP",1,"text","inputmode=numeric")}
         <label class="f"><span class="t">Gender</span>
           <select id="gender" onchange="S.data.gender=this.value">
             ${["","Female","Male","Non-binary","Prefer not to say"].map(g=>
               `<option ${S.data.gender===g?"selected":""}>${g}</option>`).join("")}
           </select></label>
+        ${F("emergency","Emergency contact (name & phone)",1)}
       </div>
-      ${F("emergency","Emergency contact (name & phone)",1)}
       ${F("heard","How did you hear about us?",0)}
       <label class="f"><span class="t">Join our email list for news &amp; exclusive offers?</span>
         <div class="pills">
@@ -387,7 +381,7 @@ R.info = () => `
     <div class="errmsg" id="err">Please complete the required fields marked with *.</div>
     <div class="navrow">
       <button class="btn btn-ghost" onclick="back()">Back</button>
-      <button class="btn btn-primary" onclick="validate(['name','dob','phone','email','address','city','state','zip','emergency'])">Continue</button>
+      <button class="btn btn-primary" onclick="validate(['name','dob','phone','email','emergency'])">Continue</button>
     </div>
   </div>`;
 
@@ -739,7 +733,6 @@ function buildPDF(){
   sec("Client Information");
   kv("Name", d.name); kv("Date of birth", d.dob); kv("Phone", d.phone);
   kv("Email", d.email);
-  kv("Address", `${d.address||""}, ${d.city||""}, ${d.state||""} ${d.zip||""}`);
   kv("Gender", d.gender); kv("Emergency contact", d.emergency);
   kv("Heard about us", d.heard); kv("Email list opt-in", d.optin);
 
