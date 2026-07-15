@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Lily Med Spa — Your Experience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   LILY MED SPA — PATIENT EXPERIENCE SURVEY
+   One question per screen · tap to answer · under 2 minutes
+   ============================================================ */
+:root{
+  --ink:#FAF7F0;            /* ivory canvas */
+  --ink-soft:#F3EEE2;
+  --card:#FFFFFF;
+  --gold:#C9A84C;           /* Lily website gold */
+  --gold-bright:#E8C96A;
+  --gold-text:#A9852F;      /* Lily gold, deepened for print-strength contrast */
+  --cream:#000000;          /* primary text = black */
+  --cream-dim:rgba(0,0,0,.88);
+  --cream-faint:rgba(0,0,0,.72);
+  --line:rgba(201,168,76,.45);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Jost',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  background:var(--ink);
+  color:var(--cream);
+  font-family:var(--sans);
+  font-weight:400;
+  line-height:1.55;
+  display:flex;
+  flex-direction:column;
+  min-height:100dvh;
+}
+/* soft radial glow behind everything */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(1200px 600px at 50% -10%,rgba(201,168,76,.14),transparent 60%);
+}
+
+/* ---------- header ---------- */
+header{
+  padding:22px 24px 14px;text-align:center;position:relative;z-index:2;
+}
+.brand{
+  font-family:var(--serif);font-weight:600;font-size:1.35rem;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--cream);
+}
+.brand span{color:var(--gold-text)}
+.brand-sub{
+  font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;
+  color:#000000;margin-top:4px;font-weight:500;
+}
+
+/* ---------- progress ---------- */
+.progress-wrap{height:2px;background:rgba(0,0,0,.10);margin:10px auto 0;max-width:520px;width:calc(100% - 48px);border-radius:2px;overflow:hidden}
+.progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--gold-bright));transition:width .45s cubic-bezier(.4,0,.2,1)}
+
+/* ---------- stage ---------- */
+main{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:20px 24px 40px;position:relative;z-index:2;
+}
+.screen{
+  width:100%;max-width:520px;text-align:center;
+  opacity:0;transform:translateY(14px);
+  animation:rise .5s cubic-bezier(.2,.7,.3,1) forwards;
+}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .screen{animation:none;opacity:1;transform:none}
+  .progress-bar{transition:none}
+}
+
+.eyebrow{
+  font-size:.62rem;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--gold-text);margin-bottom:18px;
+}
+h1{
+  font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,6vw,2.35rem);
+  line-height:1.22;letter-spacing:.01em;margin-bottom:14px;
+}
+h1 em{font-style:italic;color:var(--gold-text)}
+.sub{color:var(--cream-dim);font-weight:500;font-size:.98rem;max-width:40ch;margin:0 auto 30px}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-block;font-family:var(--sans);font-weight:500;font-size:.8rem;
+  letter-spacing:.28em;text-transform:uppercase;color:#000000;
+  background:linear-gradient(120deg,#C9A84C,#E8C96A);
+  border:none;border-radius:999px;padding:17px 46px;box-shadow:0 6px 18px rgba(201,168,76,.35);cursor:pointer;
+  transition:transform .15s,box-shadow .15s;text-decoration:none;
+}
+.btn:active{transform:scale(.97)}
+.btn-ghost{
+  background:none;color:var(--cream-dim);border:1px solid var(--line);
+}
+.btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.skip{
+  display:block;margin:22px auto 0;background:none;border:none;color:var(--cream-faint);
+  font-family:var(--sans);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;
+}
+
+/* ---------- rating scale (1–5) ---------- */
+.scale{display:flex;gap:10px;justify-content:center;margin:6px 0 10px}
+.scale button{
+  width:58px;height:58px;border-radius:50%;
+  border:1px solid var(--line);background:var(--card);box-shadow:0 2px 8px rgba(0,0,0,.06);
+  color:var(--cream);font-family:var(--serif);font-size:1.25rem;font-weight:500;
+  cursor:pointer;transition:all .15s;
+}
+.scale button:active,.scale button.sel{
+  background:linear-gradient(120deg,#C9A84C,#E8C96A);
+  color:#000000;border-color:transparent;transform:scale(1.06);
+}
+.scale-labels{
+  display:flex;justify-content:space-between;max-width:340px;margin:0 auto;
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-faint);font-weight:500;
+}
+@media(max-width:380px){.scale button{width:50px;height:50px}}
+
+/* ---------- NPS 0–10 ---------- */
+.nps{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;max-width:360px;margin:0 auto 10px}
+.nps button{
+  height:52px;border-radius:14px;border:1px solid var(--line);background:var(--card);
+  color:var(--cream);font-family:var(--serif);font-size:1.1rem;font-weight:500;cursor:pointer;
+  transition:all .15s;
+}
+.nps button:active,.nps button.sel{
+  background:linear-gradient(120deg,#C9A84C,#E8C96A);color:#000000;border-color:transparent;
+}
+.nps-labels{display:flex;justify-content:space-between;max-width:360px;margin:0 auto;
+  font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-faint)}
+
+/* ---------- choice buttons ---------- */
+.choices{display:flex;flex-direction:column;gap:11px;max-width:380px;margin:0 auto}
+.choices button{
+  padding:16px 20px;border-radius:16px;border:1px solid var(--line);background:var(--card);
+  color:var(--cream);font-family:var(--sans);font-weight:500;font-size:.95rem;cursor:pointer;
+  transition:all .15s;text-align:center;
+}
+.choices button:active,.choices button.sel{
+  background:linear-gradient(120deg,#C9A84C,#E8C96A);color:#000000;border-color:transparent;
+}
+
+/* ---------- textarea ---------- */
+textarea{
+  width:100%;max-width:420px;min-height:120px;border-radius:18px;
+  border:1px solid var(--line);background:var(--card);color:var(--cream);
+  font-family:var(--sans);font-weight:400;font-size:1rem;padding:16px 18px;resize:none;
+  outline:none;display:block;margin:0 auto 20px;
+}
+textarea:focus{border-color:var(--gold)}
+textarea::placeholder{color:var(--cream-faint)}
+
+/* ---------- finale ---------- */
+.mark{
+  width:60px;height:60px;border-radius:50%;border:1px solid var(--gold-bright);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 24px;
+  font-family:var(--serif);font-size:1.7rem;color:var(--gold-text);font-style:italic;
+}
+.review-card{
+  border:1px solid var(--line);border-radius:22px;background:var(--card);
+  padding:26px 24px;margin:26px auto 0;max-width:420px;
+}
+.review-card p{color:var(--cream-dim);font-size:.9rem;margin-bottom:18px}
+.stars{color:var(--gold-text);letter-spacing:.35em;font-size:1.05rem;margin-bottom:12px}
+
+footer{
+  text-align:center;padding:0 24px 26px;position:relative;z-index:2;
+  font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(0,0,0,.85);
+}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Lily <span>Med Spa</span></div>
+  <div class="brand-sub">Fullerton · California</div>
+  <div class="progress-wrap"><div class="progress-bar" id="bar"></div></div>
+</header>
+
+<main><div id="stage"></div></main>
+
+<footer>Your answers reach Dr. Choudhary directly · Private &amp; confidential</footer>
+
+<script>
+/* ================= CONFIGURATION — edit these two lines ================= */
+const FORMSPREE_URL     = "https://formspree.io/f/xpqkdrae";  // or a dedicated survey form ID
+const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJ22XTp0PV3IARsLzC8eAMuqY"; // Lily Med Spa, Fullerton
+/* ======================================================================= */
+
+const params  = new URLSearchParams(location.search);
+const SURVEY  = (params.get("s") || "visit").toLowerCase();   // visit | results | followup
+const PATIENT = params.get("p") || "";                        // optional ?p=Jane%20D
+
+const answers = { survey: SURVEY, patient: PATIENT, date: new Date().toISOString().slice(0,10) };
+
+/* ---------- question banks ---------- */
+/* type: rating (1–5) | nps (0–10) | choice | text
+   lo/hi: anchor labels for rating scales
+   showIf: fn(answers) → bool, for branching                              */
+
+const VISIT = [
+  {type:"intro", eyebrow:"A moment of your time",
+   title:'How was your visit, <em>truly</em>?',
+   sub:"Fifteen quick taps, under two minutes. Every answer is read personally by Dr. Choudhary and shapes how we care for you."},
+  {id:"q_booking",  type:"rating", q:"Booking your appointment was effortless", lo:"Not quite", hi:"Completely"},
+  {id:"q_first",    type:"rating", q:"Your first impression walking in", lo:"Underwhelming", hi:"Beautiful"},
+  {id:"q_wait",     type:"rating", q:"How did the wait feel?", lo:"Too long", hi:"No wait at all"},
+  {id:"q_space",    type:"rating", q:"The space felt calm, clean, and private", lo:"Not really", hi:"Absolutely"},
+  {id:"q_listened", type:"rating", q:"I felt truly listened to — my goals came first", lo:"Not really", hi:"Completely"},
+  {id:"q_explained",type:"rating", q:"Everything was explained clearly — the why, the options, and the risks", lo:"Left with questions", hi:"Crystal clear"},
+  {id:"q_personal", type:"rating", q:"The recommendations felt personal to me — never like a sales pitch", lo:"Felt pushed", hi:"Made for me"},
+  {id:"q_confidence",type:"rating",q:"I felt completely confident in my physician's hands", lo:"Unsure", hi:"Completely"},
+  {id:"q_comfort",  type:"rating", q:"How comfortable was the treatment itself?", lo:"Uncomfortable", hi:"Virtually painless"},
+  {id:"q_team",     type:"rating", q:"The team was warm and attentive", lo:"Indifferent", hi:"Exceptional"},
+  {id:"q_cared",    type:"rating", q:"I left feeling genuinely cared for", lo:"Not quite", hi:"Absolutely"},
+  {id:"q_beautiful",type:"rating", q:"I left feeling more confident and beautiful", lo:"No change", hi:"Absolutely"},
+  {id:"q_trust",    type:"rating", q:"I would trust Dr. Choudhary with someone I love", lo:"Unsure", hi:"Without hesitation"},
+  {id:"nps",        type:"nps",    q:"How likely are you to recommend Lily Med Spa to a friend?"},
+  {id:"love",    type:"text", q:"What did you love most?", ph:"A moment, a detail, a feeling…", optional:true},
+  {id:"improve", type:"text", q:"If we could change one thing — however small — what would it be?",
+   ph:"Please be candid. This is how we grow.", optional:true},
+];
+
+const RESULTS = [
+  {type:"intro", eyebrow:"Two weeks in",
+   title:'Your results have <em>settled</em>. How do they look?',
+   sub:"Ten quick taps. Your honest impressions help Dr. Choudhary refine every detail of your care."},
+  {id:"q_results",   type:"rating", q:"How happy are you with your results?", lo:"Disappointed", hi:"Thrilled"},
+  {id:"q_natural",   type:"rating", q:"My results look natural — still me, refreshed", lo:"Not quite", hi:"Perfectly natural"},
+  {id:"q_expect",    type:"rating", q:"Compared to what you expected, the results are…", lo:"Below", hi:"Beyond"},
+  {id:"q_healing",   type:"rating", q:"How smooth was your healing — bruising, swelling, downtime?", lo:"Rough", hi:"Effortless"},
+  {id:"q_confident", type:"rating", q:"I feel more confident since my treatment", lo:"No change", hi:"Much more"},
+  {id:"q_maintain",  type:"rating", q:"I understand when and how to maintain my results", lo:"Unclear", hi:"Completely clear"},
+  {id:"q_more", type:"choice", q:"Is there another area or treatment you're curious about?",
+   opts:["Yes — I'd love a consult","Maybe — thinking about it","Not right now"]},
+  {id:"q_return", type:"rating", q:"How likely are you to return for your next treatment?", lo:"Unlikely", hi:"Definitely"},
+  {id:"nps",      type:"nps",    q:"How likely are you to recommend Lily Med Spa to a friend?"},
+  {id:"notes",    type:"text",   q:"Anything about your results you'd like Dr. Choudhary to know?",
+   ph:"Questions, concerns, or something you love…", optional:true},
+];
+
+const FOLLOWUP = [
+  {type:"intro", eyebrow:"Three months later",
+   title:'How have your results <em>held up</em>?',
+   sub:"A brief check-in — eight taps — so we can time your care perfectly and keep earning your trust."},
+  {id:"q_lasted", type:"rating", q:"My results lasted as long as I expected", lo:"Faded early", hi:"Lasted beautifully"},
+  {id:"q_ready",  type:"choice", q:"Are you ready for a refresh?",
+   opts:["Yes — I'd like to book","Soon — within a month or two","Not yet"]},
+  {id:"q_elsewhere", type:"choice", q:"Since your visit, have you seen another injector or med spa?",
+   opts:["No — Lily is my home","Yes, I tried somewhere else","I've been considering it"]},
+  {id:"q_why_stay", type:"choice", q:"What matters most in where you go?",
+   showIf:a=>a.q_elsewhere==="No — Lily is my home",
+   opts:["Trust in my physician","Natural results","The experience & care","Convenience","Value"]},
+  {id:"q_why_else", type:"choice", q:"Candidly — what drew you elsewhere? (This helps us more than any compliment.)",
+   showIf:a=>a.q_elsewhere!=="No — Lily is my home",
+   opts:["Price or promotions","Location / convenience","Curiosity about another injector","Scheduling was easier","Something else"]},
+  {id:"q_compare", type:"choice", q:"How did it compare to Lily Med Spa?",
+   showIf:a=>a.q_elsewhere==="Yes, I tried somewhere else",
+   opts:["Lily is better","About the same","The other was better"]},
+  {id:"q_pricing", type:"rating", q:"Our pricing feels fair for the quality of care", lo:"Overpriced", hi:"Completely fair"},
+  {id:"nps",  type:"nps", q:"How likely are you to recommend Lily Med Spa to a friend?"},
+  {id:"notes",type:"text", q:"Anything else you'd like Dr. Choudhary to know?", ph:"We read every word…", optional:true},
+];
+
+/* ---------- NPS branch questions (injected after nps) ---------- */
+const BRANCH_PASSIVE = {id:"exceptional", type:"text",
+  q:"What would have made your experience exceptional?",
+  ph:"One thing — big or small — that would earn a 10…", optional:false};
+const BRANCH_DETRACT = {id:"make_right", type:"text",
+  q:"We clearly fell short, and we'd like to make it right. What happened?",
+  ph:"Please tell us candidly. Dr. Choudhary will reach out personally.", optional:false};
+
+const FLOWS = {visit:VISIT, results:RESULTS, followup:FOLLOWUP};
+let flow = (FLOWS[SURVEY] || VISIT).slice();
+
+/* ---------- engine ---------- */
+const stage = document.getElementById("stage");
+const bar   = document.getElementById("bar");
+let idx = 0, branched = false;
+
+function totalSteps(){ return flow.filter(s=>s.type!=="intro").length; }
+function doneSteps(){  return flow.slice(0,idx).filter(s=>s.type!=="intro").length; }
+
+function next(){
+  idx++;
+  while(idx < flow.length && flow[idx].showIf && !flow[idx].showIf(answers)) idx++;
+  if(idx >= flow.length){ submit(); return; }
+  render();
+}
+
+function setAnswer(id,val,delay){
+  answers[id]=val;
+  /* inject NPS branch once, right after the nps answer */
+  if(id==="nps" && !branched){
+    branched = true;
+    if(val<=6)      flow.splice(idx+1,0,BRANCH_DETRACT);
+    else if(val<=8) flow.splice(idx+1,0,BRANCH_PASSIVE);
+  }
+  setTimeout(next, delay??260);
+}
+
+function render(){
+  const s = flow[idx];
+  bar.style.width = (doneSteps()/totalSteps()*100)+"%";
+  let html = "";
+
+  if(s.type==="intro"){
+    html = `<div class="eyebrow">${s.eyebrow}</div><h1>${s.title}</h1>
+      <p class="sub">${s.sub}</p>
+      <button class="btn" onclick="next()">Begin</button>`;
+  }
+  else if(s.type==="rating"){
+    html = `<div class="eyebrow">${doneSteps()+1} of ${totalSteps()}</div>
+      <h1 style="font-size:clamp(1.4rem,5vw,1.9rem)">${s.q}</h1>
+      <div class="scale">${[1,2,3,4,5].map(n=>
+        `<button onclick="pick(this,'${s.id}',${n})" aria-label="${n} of 5">${n}</button>`).join("")}</div>
+      <div class="scale-labels"><span>${s.lo}</span><span>${s.hi}</span></div>`;
+  }
+  else if(s.type==="nps"){
+    html = `<div class="eyebrow">${doneSteps()+1} of ${totalSteps()}</div>
+      <h1 style="font-size:clamp(1.4rem,5vw,1.9rem)">${s.q}</h1>
+      <div class="nps">${Array.from({length:11},(_,n)=>
+        `<button onclick="pick(this,'nps',${n})" aria-label="${n} of 10">${n}</button>`).join("")}</div>
+      <div class="nps-labels"><span>Not likely</span><span>Absolutely</span></div>`;
+  }
+  else if(s.type==="choice"){
+    html = `<div class="eyebrow">${doneSteps()+1} of ${totalSteps()}</div>
+      <h1 style="font-size:clamp(1.4rem,5vw,1.9rem)">${s.q}</h1>
+      <div class="choices">${s.opts.map(o=>
+        `<button onclick="pick(this,'${s.id}',this.textContent)">${o}</button>`).join("")}</div>`;
+  }
+  else if(s.type==="text"){
+    html = `<div class="eyebrow">${doneSteps()+1} of ${totalSteps()}</div>
+      <h1 style="font-size:clamp(1.4rem,5vw,1.9rem)">${s.q}</h1>
+      <textarea id="ta" placeholder="${s.ph||''}"></textarea>
+      <button class="btn" onclick="setAnswer('${s.id}',document.getElementById('ta').value,0)">Continue</button>
+      ${s.optional?`<button class="skip" onclick="setAnswer('${s.id}','',0)">Skip</button>`:""}`;
+  }
+  stage.innerHTML = `<div class="screen">${html}</div>`;
+  if(s.type==="text") document.getElementById("ta").focus();
+}
+
+function pick(btn,id,val){
+  btn.classList.add("sel");
+  setAnswer(id, typeof val==="string" ? val : Number(val));
+}
+
+/* ---------- submit & finale ---------- */
+async function submit(){
+  bar.style.width = "100%";
+  stage.innerHTML = `<div class="screen"><div class="eyebrow">One moment</div>
+    <h1>Sending your answers…</h1></div>`;
+
+  const nps = Number(answers.nps ?? -1);
+  const payload = {...answers,
+    _subject: nps>=0 && nps<=6
+      ? `🔴 URGENT — Low score (${nps}/10) · ${SURVEY} survey${PATIENT?" · "+PATIENT:""}`
+      : `Lily survey · ${SURVEY} · NPS ${nps}${PATIENT?" · "+PATIENT:""}`
+  };
+
+  try{
+    await fetch(FORMSPREE_URL,{method:"POST",
+      headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body:JSON.stringify(payload)});
+  }catch(e){ /* still show thanks — answers matter more than plumbing */ }
+
+  finale(nps);
+}
+
+function finale(nps){
+  let html = "";
+  if(nps>=9){
+    html = `<div class="mark">L</div>
+      <div class="eyebrow">Thank you</div>
+      <h1>You've made our <em>day</em>.</h1>
+      <p class="sub">Kind words from patients like you are how others find their way to us.</p>
+      <div class="review-card">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p>Would you share your experience on Google? It takes about thirty seconds, and it means the world to a small physician-owned practice.</p>
+        <a class="btn" href="${GOOGLE_REVIEW_URL}" target="_blank" rel="noopener">Leave a review</a>
+      </div>`;
+  } else if(nps>=7){
+    html = `<div class="mark">L</div>
+      <div class="eyebrow">Thank you</div>
+      <h1>We're grateful — and we're <em>listening</em>.</h1>
+      <p class="sub">Your candor is a gift. We'll use it to make your next visit exceptional.</p>`;
+  } else if(nps>=0){
+    html = `<div class="mark">L</div>
+      <div class="eyebrow">Thank you for your honesty</div>
+      <h1>We hear you, and we'll make it <em>right</em>.</h1>
+      <p class="sub">Dr. Choudhary reads every response personally and will reach out to you directly. Your experience matters more to us than any review.</p>`;
+  } else {
+    html = `<div class="mark">L</div>
+      <div class="eyebrow">Thank you</div>
+      <h1>With <em>gratitude</em>.</h1>
+      <p class="sub">Your answers reached us safely and will shape how we care for every patient.</p>`;
+  }
+  stage.innerHTML = `<div class="screen">${html}</div>`;
+}
+
+render();
+</script>
+</body>
+</html>
